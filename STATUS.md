@@ -1,33 +1,45 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-08-19 · **Por:** Consultor Adapta
+> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T01 concluída)
 > O painel do projeto: fase atual, progresso e o que precisa de atenção.
 
 ## Onde estamos
 
-- **Fase atual:** 1 — Sistema central de captura, dados e pipeline · aberta em 2026-08-19 · reunião de fechamento a definir
+- **Fase atual:** 1 — Sistema central de captura, dados e pipeline · aberta em 2026-08-19
 - **Objetivo desta fase:** demonstrar um lead sintético capturado no sistema central com identificador, origem disponível, respostas, estágio, responsável, histórico e reprocessamento sem duplicidade.
-- **No prazo?** em risco — plataforma, campos, permissões, idempotência e política de recuperação ainda precisam de decisões e provas.
+- **No prazo?** em risco — configuração do modelo e testes ainda precisam de execução.
 
 ## Progresso da fase
 
-- **Tasks:** 0/10 (0%)
-- **Próxima task do champion:** F1-T01 — confirmar plataforma central, conta de teste, papéis, responsáveis, campos mínimos e capacidade de RLS.
+- **Tasks:** 1/10 (10%)
+- **Próxima task do champion:** F1-T04 — confirmar formulário, destino, evento, campos, consentimento, conector e chave de idempotência/deduplicação.
 
-## Travas ativas
+| Task | Status | Descrição |
+|---|---|---|
+| F1-T01 | ✅ CONCLUÍDA | Plataforma, conta, papéis, campos e RLS confirmados |
+| F1-T02 | 🔒 BLOQUEADA | Configurar modelo, pipeline, responsável, RLS e histórico |
+| F1-T03 | 🔒 BLOQUEADA | Provar modelo, RLS, histórico e bordas |
+| F1-T04 | 🟡 PENDENTE | Confirmar formulário, captura e idempotência |
+| F1-T05 | 🔒 BLOQUEADA | Configurar captura e upsert idempotente |
+| F1-T06 | 🔒 BLOQUEADA | Provar criação e replay idempotente |
+| F1-T07 | 🔒 BLOQUEADA | Provar ausências e falhas |
+| F1-T08 | 🟡 PENDENTE | Confirmar fila, retenção, retry e recuperação |
+| F1-T09 | 🔒 BLOQUEADA | Configurar fila de recuperação |
+| F1-T10 | 🔒 BLOQUEADA | Provar falha, replay e reconciliação |
+
+## Travas restantes
 
 | Trava | Desde | Quem resolve | Ação em curso |
 |---|---|---|---|
-| Plataforma, conta, papéis, campos e RLS não fechados | 2026-08-19 | Terceirizou + Adapta | Registrar decisão antes de configurar |
-| Formulário, evento, conector e chave de idempotência não fechados | 2026-08-19 | Terceirizou + Adapta | Fechar contrato de captura com fixture sintética |
-| Retenção, retry, alerta, fila, RLS e pausa não fechados | 2026-08-19 | Terceirizou + Adapta | Definir política de recuperação e auditoria |
+| Formulário, evento, conector e chave de idempotência não fechados | 2026-08-19 | Terceirizou + Adapta | F1-T04 — aguardando decisão do champion |
+| Retenção, retry, alerta, fila, RLS e pausa não fechados | 2026-08-19 | Terceirizou + Adapta | F1-T08 — aguardando decisão do champion |
 
 ## Entregas concluídas
 
 | Fase | O que foi entregue | Fechada em |
 |---|---|---|
-| — | Nenhuma fase fechada; pacote de teste da Fase 1 preparado, sem aceite produtivo | — |
+| F1-T01 | Decisões de plataforma, papéis, campos e RLS registradas por escrito | 2026-08-19 |
 
 ## Próxima reunião
 
-A definir — confirmar plataforma, contrato de captura, idempotência, recuperação e roteiro de aceite da Fase 1.
+F1-T04 — confirmar formulário de captura, campos, conector e chave de idempotência.
