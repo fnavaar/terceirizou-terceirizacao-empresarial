@@ -1,25 +1,25 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T01 concluída)
+> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T04 concluída)
 > O painel do projeto: fase atual, progresso e o que precisa de atenção.
 
 ## Onde estamos
 
 - **Fase atual:** 1 — Sistema central de captura, dados e pipeline · aberta em 2026-08-19
 - **Objetivo desta fase:** demonstrar um lead sintético capturado no sistema central com identificador, origem disponível, respostas, estágio, responsável, histórico e reprocessamento sem duplicidade.
-- **No prazo?** em risco — configuração do modelo e testes ainda precisam de execução.
+- **No prazo?** em risco — configuração do conector e testes ainda precisam de execução.
 
 ## Progresso da fase
 
-- **Tasks:** 1/10 (10%)
-- **Próxima task do champion:** F1-T04 — confirmar formulário, destino, evento, campos, consentimento, conector e chave de idempotência/deduplicação.
+- **Tasks:** 2/10 (20%)
+- **Próxima task do champion:** F1-T02 — configurar modelo de lead/oportunidade, pipeline, responsável, RLS e histórico no ambiente de teste.
 
 | Task | Status | Descrição |
 |---|---|---|
 | F1-T01 | ✅ CONCLUÍDA | Plataforma, conta, papéis, campos e RLS confirmados |
-| F1-T02 | 🔒 BLOQUEADA | Configurar modelo, pipeline, responsável, RLS e histórico |
+| F1-T02 | 🔓 DESBLOQUEADA | Configurar modelo, pipeline, responsável, RLS e histórico |
 | F1-T03 | 🔒 BLOQUEADA | Provar modelo, RLS, histórico e bordas |
-| F1-T04 | 🟡 PENDENTE | Confirmar formulário, captura e idempotência |
+| F1-T04 | ✅ CONCLUÍDA | Formulário, conector, campos e idempotência confirmados |
 | F1-T05 | 🔒 BLOQUEADA | Configurar captura e upsert idempotente |
 | F1-T06 | 🔒 BLOQUEADA | Provar criação e replay idempotente |
 | F1-T07 | 🔒 BLOQUEADA | Provar ausências e falhas |
@@ -31,15 +31,15 @@
 
 | Trava | Desde | Quem resolve | Ação em curso |
 |---|---|---|---|
-| Formulário, evento, conector e chave de idempotência não fechados | 2026-08-19 | Terceirizou + Adapta | F1-T04 — aguardando decisão do champion |
-| Retenção, retry, alerta, fila, RLS e pausa não fechados | 2026-08-19 | Terceirizou + Adapta | F1-T08 — aguardando decisão do champion |
+| Retenção, retry, alerta, fila e pausa não fechados | 2026-08-19 | Terceirizou + Adapta | F1-T08 — aguardando decisão do champion |
 
 ## Entregas concluídas
 
 | Fase | O que foi entregue | Fechada em |
 |---|---|---|
 | F1-T01 | Decisões de plataforma, papéis, campos e RLS registradas por escrito | 2026-08-19 |
+| F1-T04 | Contrato de captura, mapeamento de campos e chave de idempotência registrados | 2026-08-19 |
 
 ## Próxima reunião
 
-F1-T04 — confirmar formulário de captura, campos, conector e chave de idempotência.
+F1-T02 — configurar modelo de lead/oportunidade no Skip com os 14 campos, pipeline e RLS.

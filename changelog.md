@@ -7,6 +7,8 @@
 
 ## Registro
 
+- 2026-08-19 · [Vinicius/Champion] · F1-T04 autorizada com decisões: Google Sheets como fonte, Google Apps Script → webhook Skip como conector, email+telefone como chave de idempotência, consentimento pela plataforma de origem.
+- 2026-08-19 · [Adapta/Ethos] · F1-T04 CONCLUÍDA: contrato de captura registrado — 2 planilhas (Meta Ads + Cora), mapeamento completo de 13+14 colunas, dedup por email primário + telefone fallback. Arquivo: 06_notas/decisoes-f1-t04.md.
 - 2026-08-19 · [Vinicius/Champion] · F1-T01 TESTE APROVADO: "Testei a task F1-T01 no preview conforme o roteiro. Resultado: funcionou."
 - 2026-08-19 · [Adapta/Ethos] · F1-T01 FECHADA: revalidação OK — arquivo decisoes-f1-t01.md existe com 5 decisões, STATUS.md e changelog.md atualizados, estado-atual.md em concluida.
 - 2026-08-19 · [Vinicius/Champion] · F1-T01 autorizada: "Autorizo implementar somente a task F1-T01".
