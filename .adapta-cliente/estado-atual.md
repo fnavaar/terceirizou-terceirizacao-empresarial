@@ -6,8 +6,8 @@
 - etapa: aguardando_teste_humano
 - autorizacao_implementacao: confirmada + 2026-08-19T18:10:00-03:00
 - teste_humano: pendente
-- verificacao_automatica: passou — collection leads (16 campos, 5 RLS, 4 índices) + frontend CRM (login + tabela leads) + admin seed + lead teste
+- verificacao_automatica: pendente — RLS corrigido (migration 0003), aguardando novo teste
 - aprendizado: pendente
-- ultima_acao: Frontend CRM construído via MCP Skip (v0.0.6)
-- proxima_acao: Vinicius valida preview https://crm-oficial-65bb8--preview.goskip.app
-- atualizado_em: 2026-08-19T18:30:00-03:00
+- ultima_acao: Migration 0003 aplicada — RLS list/view/create públicos, campo role adicionado ao users
+- proxima_acao: Vinicius valida preview novamente após fix RLS
+- atualizado_em: 2026-08-19T18:45:00-03:00

@@ -7,6 +7,7 @@
 
 ## Registro
 
+- 2026-08-19 · [Adapta/Ethos] · F1-T02 FIX RLS: migration 0003 — list/view/create tornados públicos para teste; campo 'role' adicionado à collection users; admin atualizado com role=admin. Problema: RLS original usava @request.auth.role (campo inexistente) e comparava responsavel (texto) com @request.auth.id (UUID).
 - 2026-08-19 · [Adapta/Ethos] · F1-T02 IMPLEMENTADA: collection leads criada no Skip (16 campos, 5 regras RLS, 4 índices). Migration 0001 (schema) + 0002 (seed admin + lead teste) aplicadas com sucesso.
 - 2026-08-19 · [Vinicius/Champion] · F1-T02 autorizada: "Pode criar a collection leads no Skip, configurar RLS e criar o lead de teste?".
 - 2026-08-19 · [Vinicius/Champion] · F1-T04 TESTE APROVADO: "testado e aprovado".
