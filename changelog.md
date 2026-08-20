@@ -7,6 +7,8 @@
 
 ## Registro
 
+- 2026-08-19 · [Adapta/Ethos] · F1-T02 IMPLEMENTADA: collection leads criada no Skip (16 campos, 5 regras RLS, 4 índices). Migration 0001 (schema) + 0002 (seed admin + lead teste) aplicadas com sucesso.
+- 2026-08-19 · [Vinicius/Champion] · F1-T02 autorizada: "Pode criar a collection leads no Skip, configurar RLS e criar o lead de teste?".
 - 2026-08-19 · [Vinicius/Champion] · F1-T04 TESTE APROVADO: "testado e aprovado".
 - 2026-08-19 · [Adapta/Ethos] · F1-T04 FECHADA: revalidação OK — decisoes-f1-t04.md com contrato completo, STATUS.md e changelog.md atualizados, estado concluida.
 - 2026-08-19 · [Vinicius/Champion] · F1-T04 autorizada com decisões: Google Sheets como fonte, Google Apps Script → webhook Skip como conector, email+telefone como chave de idempotência, consentimento pela plataforma de origem.

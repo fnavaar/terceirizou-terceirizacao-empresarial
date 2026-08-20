@@ -1,23 +1,23 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T04 concluída)
+> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T02 implementada)
 > O painel do projeto: fase atual, progresso e o que precisa de atenção.
 
 ## Onde estamos
 
 - **Fase atual:** 1 — Sistema central de captura, dados e pipeline · aberta em 2026-08-19
 - **Objetivo desta fase:** demonstrar um lead sintético capturado no sistema central com identificador, origem disponível, respostas, estágio, responsável, histórico e reprocessamento sem duplicidade.
-- **No prazo?** em risco — configuração do conector e testes ainda precisam de execução.
+- **No prazo?** em risco — testes de RLS e idempotência ainda precisam de validação.
 
 ## Progresso da fase
 
-- **Tasks:** 2/10 (20%)
-- **Próxima task do champion:** F1-T02 — configurar modelo de lead/oportunidade, pipeline, responsável, RLS e histórico no ambiente de teste.
+- **Tasks:** 2/10 (20%) — implementando F1-T02
+- **Próxima task do champion:** F1-T03 — provar modelo, RLS, histórico e bordas.
 
 | Task | Status | Descrição |
 |---|---|---|
 | F1-T01 | ✅ CONCLUÍDA | Plataforma, conta, papéis, campos e RLS confirmados |
-| F1-T02 | 🔓 DESBLOQUEADA | Configurar modelo, pipeline, responsável, RLS e histórico |
+| F1-T02 | 🟡 IMPLEMENTANDO | Collection leads criada — aguardando teste humano |
 | F1-T03 | 🔒 BLOQUEADA | Provar modelo, RLS, histórico e bordas |
 | F1-T04 | ✅ CONCLUÍDA | Formulário, conector, campos e idempotência confirmados |
 | F1-T05 | 🔒 BLOQUEADA | Configurar captura e upsert idempotente |
@@ -42,4 +42,4 @@
 
 ## Próxima reunião
 
-F1-T02 — configurar modelo de lead/oportunidade no Skip com os 14 campos, pipeline e RLS.
+F1-T02 — validar collection leads e lead de teste no Skip.
