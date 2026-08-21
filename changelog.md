@@ -7,6 +7,8 @@
 
 ## Registro
 
+- 2026-08-21 · [Adapta/Ethos] · F1-T04 CONTRATO DOCUMENTADO: mapa de campos completo em 04_fase-atual/specs/contrato-f1-t004.md — 3 fontes (Cora + 2 abas Meta Ads), mapeamento para 16 campos CRM, chave idempotência email+telefone, fixture sintética definida.
+- 2026-08-21 · [Vinicius/Champion] · F1-T04 DECISÕES CONFIRMADAS: conector = Google Sheets MCP (leitura direta), polling = 10 minutos, chave idempotência = email primário + telefone fallback.
 - 2026-08-19 · [Vinicius/Champion] · F1-T02 TESTE APROVADO: "testado e aprovado".
 - 2026-08-19 · [Adapta/Ethos] · F1-T02 FECHADA: revalidação OK — collection leads criada (16 campos, RLS, índices), frontend CRM funcional, admin+lead seed, fix RLS (migration 0003). Preview: https://crm-oficial-65bb8--preview.goskip.app.
 - 2026-08-19 · [Adapta/Ethos] · F1-T02 FIX RLS: migration 0003 — list/view/create tornados públicos para teste; campo 'role' adicionado ao users; admin atualizado com role=admin.
