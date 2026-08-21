@@ -7,6 +7,8 @@
 
 ## Registro
 
+- 2026-08-21 · [Vinicius/Champion] · F1-T04 TESTE APROVADO: "Sim, confirmado, e pode concluir."
+- 2026-08-21 · [Adapta/Ethos] · F1-T04 CONCLUÍDA: todos os CA passaram — CA-1-005 (criação), CA-1-006 (idempotência), CA-1-007 (ausentes), CA-1-008 (validação). Leads de teste removidos. Commit: a9ecd2edb.
 - 2026-08-21 · [Adapta/Ethos] · F1-T04 CONTRATO DOCUMENTADO: mapa de campos completo em 04_fase-atual/specs/contrato-f1-t004.md — 3 fontes (Cora + 2 abas Meta Ads), mapeamento para 16 campos CRM, chave idempotência email+telefone, fixture sintética definida.
 - 2026-08-21 · [Vinicius/Champion] · F1-T04 DECISÕES CONFIRMADAS: conector = Google Sheets MCP (leitura direta), polling = 10 minutos, chave idempotência = email primário + telefone fallback.
 - 2026-08-19 · [Vinicius/Champion] · F1-T02 TESTE APROVADO: "testado e aprovado".
