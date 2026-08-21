@@ -7,6 +7,7 @@
 
 ## Registro
 
+- 2026-08-21 · [Adapta/Ethos] · F1-T05 IMPLEMENTADA: script de polling (Google Sheets → CRM) configurado e testado. Cron a cada 10 minutos (id: 91e08561a5b65e5d). Teste manual OK: 70 linhas processadas. Commit: 3c243c333.
 - 2026-08-21 · [Vinicius/Champion] · F1-T04 TESTE APROVADO: "Sim, confirmado, e pode concluir."
 - 2026-08-21 · [Adapta/Ethos] · F1-T04 CONCLUÍDA: todos os CA passaram — CA-1-005 (criação), CA-1-006 (idempotência), CA-1-007 (ausentes), CA-1-008 (validação). Leads de teste removidos. Commit: a9ecd2edb.
 - 2026-08-21 · [Adapta/Ethos] · F1-T04 CONTRATO DOCUMENTADO: mapa de campos completo em 04_fase-atual/specs/contrato-f1-t004.md — 3 fontes (Cora + 2 abas Meta Ads), mapeamento para 16 campos CRM, chave idempotência email+telefone, fixture sintética definida.
