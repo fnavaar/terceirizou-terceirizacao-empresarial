@@ -1,25 +1,25 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-08-19 · **Por:** Adapta (F1-T02 implementada)
+> **Atualizado em:** 2026-08-21 · **Por:** Adapta (F1-T04 implementada)
 > O painel do projeto: fase atual, progresso e o que precisa de atenção.
 
 ## Onde estamos
 
 - **Fase atual:** 1 — Sistema central de captura, dados e pipeline · aberta em 2026-08-19
 - **Objetivo desta fase:** demonstrar um lead sintético capturado no sistema central com identificador, origem disponível, respostas, estágio, responsável, histórico e reprocessamento sem duplicidade.
-- **No prazo?** em risco — testes de RLS e idempotência ainda precisam de validação.
+- **No prazo?** em andamento — F1-T04 implementada, aguardando teste humano.
 
 ## Progresso da fase
 
-- **Tasks:** 2/10 (20%) — implementando F1-T02
-- **Próxima task do champion:** F1-T03 — provar modelo, RLS, histórico e bordas.
+- **Tasks:** 4/10 (40%) — F1-T01, F1-T02, F1-T04 concluídas; F1-T08 pendente
+- **Próxima task do champion:** F1-T05 — configurar captura e upsert idempotente (após F1-T04 aprovada)
 
 | Task | Status | Descrição |
 |---|---|---|
 | F1-T01 | ✅ CONCLUÍDA | Plataforma, conta, papéis, campos e RLS confirmados |
-| F1-T02 | 🟡 IMPLEMENTANDO | Collection leads criada — aguardando teste humano |
+| F1-T02 | ✅ CONCLUÍDA | Collection leads criada — teste humano aprovado |
 | F1-T03 | 🔒 BLOQUEADA | Provar modelo, RLS, histórico e bordas |
-| F1-T04 | ✅ CONCLUÍDA | Formulário, conector, campos e idempotência confirmados |
+| F1-T04 | 🟡 EM TESTE | Contrato de campos documentado — aguardando teste humano |
 | F1-T05 | 🔒 BLOQUEADA | Configurar captura e upsert idempotente |
 | F1-T06 | 🔒 BLOQUEADA | Provar criação e replay idempotente |
 | F1-T07 | 🔒 BLOQUEADA | Provar ausências e falhas |
@@ -38,8 +38,9 @@
 | Fase | O que foi entregue | Fechada em |
 |---|---|---|
 | F1-T01 | Decisões de plataforma, papéis, campos e RLS registradas por escrito | 2026-08-19 |
-| F1-T04 | Contrato de captura, mapeamento de campos e chave de idempotência registrados | 2026-08-19 |
+| F1-T02 | Collection leads criada com RLS público para teste | 2026-08-19 |
+| F1-T04 | Contrato de campos, mapeamento e chave de idempotência documentados | 2026-08-21 |
 
 ## Próxima reunião
 
-F1-T02 — validar collection leads e lead de teste no Skip.
+F1-T04 — validar contrato de campos e fixture sintética no CRM.
