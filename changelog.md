@@ -4,7 +4,9 @@
 
 ## Registro
 
-- 2026-08-21 · [Adapta/Ethos] · F1-T03 IMPLEMENTADA: relatório de teste — CA-1-001 (modelo completo), CA-1-002 (RLS OK), CA-1-003 (dado ausente preservado), CA-1-004 (histórico auditável). Todos comprovados via API.
+- 2026-08-21 · [Vinicius/Champion] · F1-T03 TESTE APROVADO: "aprovado".
+- 2026-08-21 · [Adapta/Ethos] · F1-T03 FECHADA: CA-1-001 a CA-1-004 comprovados. Relatório: 06_notas/teste-f1-t03.md.
+- 2026-08-21 · [Adapta/Ethos] · F1-T03 IMPLEMENTADA: testes de modelo, RLS, histórico e bordas executados via API.
 - 2026-08-21 · [Vinicius/Champion] · F1-T09 TESTE APROVADO: "Aprovado".
 - 2026-08-21 · [Adapta/Ethos] · F1-T09 FECHADA: replay + fila de recuperação + testes OK.
 - 2026-08-21 · [Vinicius/Champion] · F1-T08 TESTE APROVADO: "Aprovado".
