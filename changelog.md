@@ -4,7 +4,9 @@
 
 ## Registro
 
-- 2026-08-21 · [Adapta/Ethos] · F1-T08 IMPLEMENTADA: collection error_log (migration 0004) + webhook atualizado com logging de erros + política de recuperação documentada (06_notas/politica-recuperacao-f1-t08.md). Testes: 2 erros registrados com sucesso.
+- 2026-08-21 · [Vinicius/Champion] · F1-T08 TESTE APROVADO: "Aprovado".
+- 2026-08-21 · [Adapta/Ethos] · F1-T08 FECHADA: collection error_log + webhook com logging + política de recuperação documentada. 2 erros testados com sucesso.
+- 2026-08-21 · [Adapta/Ethos] · F1-T08 IMPLEMENTADA: migration 0004 (error_log), hook webhook_lead com logError, 06_notas/politica-recuperacao-f1-t08.md.
 - 2026-08-21 · [Vinicius/Champion] · F1-T08 autorizada: "Sim, pode implementar o plano".
 - 2026-08-21 · [Vinicius/Champion] · F1-T07 TESTE APROVADO: "Aprovado".
 - 2026-08-21 · [Adapta/Ethos] · F1-T07 FECHADA: CA-1-007 e CA-1-008 comprovados.
