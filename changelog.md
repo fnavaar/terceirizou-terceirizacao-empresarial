@@ -4,19 +4,14 @@
 
 ## Registro
 
-- 2026-08-21 · [Vinicius/Champion] · F1-T03 TESTE APROVADO: "aprovado".
-- 2026-08-21 · [Adapta/Ethos] · F1-T03 FECHADA: CA-1-001 a CA-1-004 comprovados. Relatório: 06_notas/teste-f1-t03.md.
-- 2026-08-21 · [Adapta/Ethos] · F1-T03 IMPLEMENTADA: testes de modelo, RLS, histórico e bordas executados via API.
-- 2026-08-21 · [Vinicius/Champion] · F1-T09 TESTE APROVADO: "Aprovado".
-- 2026-08-21 · [Adapta/Ethos] · F1-T09 FECHADA: replay + fila de recuperação + testes OK.
-- 2026-08-21 · [Vinicius/Champion] · F1-T08 TESTE APROVADO: "Aprovado".
-- 2026-08-21 · [Adapta/Ethos] · F1-T08 FECHADA: error_log + webhook logging + política.
+- 2026-08-21 · [Adapta/Ethos] · F1-T08 IMPLEMENTADA: collection error_log (migration 0004) + webhook atualizado com logging de erros + política de recuperação documentada (06_notas/politica-recuperacao-f1-t08.md). Testes: 2 erros registrados com sucesso.
+- 2026-08-21 · [Vinicius/Champion] · F1-T08 autorizada: "Sim, pode implementar o plano".
 - 2026-08-21 · [Vinicius/Champion] · F1-T07 TESTE APROVADO: "Aprovado".
 - 2026-08-21 · [Adapta/Ethos] · F1-T07 FECHADA: CA-1-007 e CA-1-008 comprovados.
 - 2026-08-21 · [Vinicius/Champion] · F1-T06 TESTE APROVADO: "Sim".
 - 2026-08-21 · [Adapta/Ethos] · F1-T06 FECHADA: CA-1-005 e CA-1-006 comprovados.
 - 2026-08-20 · [Vinicius/Champion] · F1-T05 TESTE APROVADO: "Sim".
-- 2026-08-20 · [Adapta/Ethos] · F1-T05 FECHADA: webhook + Google Apps Script + idempotência.
+- 2026-08-20 · [Adapta/Ethos] · F1-T05 FECHADA: webhook + Google Apps Script + idempotência OK.
 - 2026-08-19 · [Vinicius/Champion] · F1-T02 TESTE APROVADO.
 - 2026-08-19 · [Adapta/Ethos] · F1-T02 FECHADA: collection leads + frontend + seed.
 - 2026-08-19 · [Vinicius/Champion] · F1-T04 TESTE APROVADO.
