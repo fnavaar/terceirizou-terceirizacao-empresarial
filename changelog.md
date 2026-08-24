@@ -4,10 +4,9 @@
 
 ## Registro
 
+- 2026-08-21 · [Adapta/Ethos] · F1-T09 IMPLEMENTADA: endpoint /backend/v1/replay/lead (motivo+operador+chave), página /fila (visualização+modal replay), testes: criação erro OK, replay OK, sem duplicidade, fonte preservada.
 - 2026-08-21 · [Vinicius/Champion] · F1-T08 TESTE APROVADO: "Aprovado".
-- 2026-08-21 · [Adapta/Ethos] · F1-T08 FECHADA: collection error_log + webhook com logging + política de recuperação documentada. 2 erros testados com sucesso.
-- 2026-08-21 · [Adapta/Ethos] · F1-T08 IMPLEMENTADA: migration 0004 (error_log), hook webhook_lead com logError, 06_notas/politica-recuperacao-f1-t08.md.
-- 2026-08-21 · [Vinicius/Champion] · F1-T08 autorizada: "Sim, pode implementar o plano".
+- 2026-08-21 · [Adapta/Ethos] · F1-T08 FECHADA: collection error_log + webhook com logging + política documentada.
 - 2026-08-21 · [Vinicius/Champion] · F1-T07 TESTE APROVADO: "Aprovado".
 - 2026-08-21 · [Adapta/Ethos] · F1-T07 FECHADA: CA-1-007 e CA-1-008 comprovados.
 - 2026-08-21 · [Vinicius/Champion] · F1-T06 TESTE APROVADO: "Sim".
