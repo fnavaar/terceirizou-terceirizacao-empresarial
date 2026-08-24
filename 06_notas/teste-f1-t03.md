@@ -23,8 +23,8 @@
 **Teste:** Verificar regras de acesso da collection leads.
 
 **Resultado:**
-- Admin vê 82 leads ✅
-- Público vê 82 leads (RLS público para teste) ✅
+- Admin vê 84 leads ✅
+- Público vê 84 leads (RLS público para teste) ✅
 - listRule/viewRule/createRule: públicos ✅
 - updateRule: `responsavel = @request.auth.id || @request.auth.role = 'admin'` ✅
 - deleteRule: `@request.auth.role = 'admin'` ✅
