@@ -4,9 +4,10 @@
 
 ## Registro
 
+- 2026-08-21 · [Adapta/Ethos] · F1-T08 IMPLEMENTADA: collection error_log (migration 0004) + webhook atualizado com logging de erros + política de recuperação documentada (06_notas/politica-recuperacao-f1-t08.md). Testes: 2 erros registrados com sucesso.
+- 2026-08-21 · [Vinicius/Champion] · F1-T08 autorizada: "Sim, pode implementar o plano".
 - 2026-08-21 · [Vinicius/Champion] · F1-T07 TESTE APROVADO: "Aprovado".
-- 2026-08-21 · [Adapta/Ethos] · F1-T07 FECHADA: CA-1-007 (validação OK) e CA-1-008 (sem falso sucesso) comprovados. Relatório: 06_notas/teste-f1-t07.md.
-- 2026-08-21 · [Adapta/Ethos] · F1-T07 IMPLEMENTADA: relatório de teste formalizado com 6 cenários de borda.
+- 2026-08-21 · [Adapta/Ethos] · F1-T07 FECHADA: CA-1-007 e CA-1-008 comprovados.
 - 2026-08-21 · [Vinicius/Champion] · F1-T06 TESTE APROVADO: "Sim".
 - 2026-08-21 · [Adapta/Ethos] · F1-T06 FECHADA: CA-1-005 e CA-1-006 comprovados.
 - 2026-08-20 · [Vinicius/Champion] · F1-T05 TESTE APROVADO: "Sim".
