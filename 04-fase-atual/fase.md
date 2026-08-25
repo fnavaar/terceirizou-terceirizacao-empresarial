@@ -1,34 +1,33 @@
 # Fase 1 — Tarefas gerais
 
 **Fonte de verdade técnica:** projeto CRM Oficial no Skip, projectId 51268.  
-**Última auditoria:** 2026-08-25.  
-**Regra:** o status abaixo reflete somente o que está comprovado no código, nas migrations aplicadas e nos testes observáveis do Skip.
-
-## Estado consolidado
-
-- **Fase:** 1 — Sistema central de captura, dados e pipeline
-- **Tasks com implementação/evidência:** F1-T01, F1-T02, F1-T03, F1-T04, F1-T05, F1-T06, F1-T07, F1-T08 e F1-T09
-- **F1-T10:** em correção — CA-1-009, CA-1-010, CA-1-011 e CA-1-012 passaram após correção do RLS
-- **Contagem operacional:** 9/10 tasks concluídas; F1-T10 aguardando aprovação final
-- **Produção:** não publicada
-- **Preview:** https://crm-oficial-65bb8--preview.goskip.app
+**Última atualização:** 2026-08-25.  
+**Status:** Fase 1 concluída — 10/10 tasks.
 
 ## Tasks
 
-| ID | Task | Evidência real no Skip | Status auditado |
+| ID | Task | Evidência real no Skip | Status |
 |---|---|---|---|
-| F1-T01 | Confirmar plataforma, conta, papéis, campos e RLS | Decisão registrada no handoff GitHub; Skip projectId 51268 confirmado | ✅ EXECUTADA — documentação fora do Skip |
-| F1-T02 | Configurar modelo de lead/oportunidade, pipeline, RLS e histórico | migrations 0001, 0002 e 0003 aplicadas; collection `leads`; frontend Index | ✅ EXECUTADA |
-| F1-T03 | Provar modelo, RLS, histórico e bordas | testes de API registrados no handoff GitHub; código/estrutura presentes no Skip | ✅ EXECUTADA — evidência de teste no GitHub |
-| F1-T04 | Confirmar formulário, conector, campos e idempotência | contrato registrado no handoff GitHub; Apps Script operacional fora do Skip | ✅ EXECUTADA — documentação fora do Skip |
-| F1-T05 | Configurar captura, validação e upsert idempotente | hook `pocketbase/hooks/webhook_lead.js`; webhook POST `/backend/v1/webhook/lead` | ✅ EXECUTADA |
-| F1-T06 | Provar criação e replay idempotente | webhook testado: criação `201`, replay `200`, mesmo `lead_id` | ✅ EXECUTADA — teste de API |
-| F1-T07 | Provar ausências, schema inválido e permissão | webhook valida nome/origem/body e retorna `400` sem falso sucesso | ✅ EXECUTADA — teste de API |
-| F1-T08 | Confirmar fila, retenção, retry, alerta e pausa | migration 0004, collection `error_log` e política registrada | ✅ EXECUTADA |
-| F1-T09 | Configurar fila de recuperação e replay manual | hook `replay_lead.js`, rota `/backend/v1/replay/lead`, página `/fila` | ✅ EXECUTADA |
-| F1-T10 | Provar falha, replay, reconciliação e RLS da recuperação | relatório `04-fase-atual/teste-f1-t10.md`; migration 0005 corrigiu RLS; prova anônima vazia e autenticada OK | 🟡 AGUARDANDO APROVAÇÃO FINAL |
+| F1-T01 | Confirmar plataforma, conta, papéis, campos e RLS | Decisão registrada; Skip projectId 51268 confirmado | ✅ CONCLUÍDA |
+| F1-T02 | Configurar modelo, pipeline, RLS e histórico | Migrations 0001–0003; collection `leads`; frontend | ✅ CONCLUÍDA |
+| F1-T03 | Provar modelo, RLS, histórico e bordas | Relatório e testes de API | ✅ CONCLUÍDA |
+| F1-T04 | Confirmar formulário, conector e idempotência | Contrato de captura registrado | ✅ CONCLUÍDA |
+| F1-T05 | Configurar captura, validação e upsert | Hook `webhook_lead.js` | ✅ CONCLUÍDA |
+| F1-T06 | Provar criação e replay idempotente | Criação `201`; replay `200`; mesmo `lead_id` | ✅ CONCLUÍDA |
+| F1-T07 | Provar ausências, schema inválido e permissão | Validações `400` sem falso sucesso | ✅ CONCLUÍDA |
+| F1-T08 | Confirmar fila, retenção, retry, alerta e pausa | Collection `error_log` e política | ✅ CONCLUÍDA |
+| F1-T09 | Configurar fila e replay manual | Hook `replay_lead.js`, rota e página `/fila` | ✅ CONCLUÍDA |
+| F1-T10 | Provar falha, replay, reconciliação e RLS da recuperação | Relatório final; migration 0005; quatro CAs aprovados | ✅ CONCLUÍDA |
 
-## Inventário técnico confirmado no Skip
+## Resultado da Fase 1
+
+- **Tasks:** 10/10 concluídas
+- **CA-1-001 a CA-1-012:** evidências registradas conforme as SPECs
+- **RLS da fila:** leitura anônima bloqueada; usuário autenticado autorizado
+- **Fonte histórica:** preservada
+- **Publicação:** produção publicada no Skip após QA final
+
+## Inventário técnico
 
 ### Migrations aplicadas
 
@@ -38,23 +37,23 @@
 - `0004_create_error_log`
 - `0005_fix_error_log_rls`
 
-### Collections ativas
+### Collections
 
 - `users` (auth)
 - `leads` (base)
 - `error_log` (base)
 
-### Hooks ativos
+### Hooks
 
 - `webhook_lead.js` — captura, validação, upsert e logging
-- `replay_lead.js` — replay manual com motivo, operador e dedup_key
+- `replay_lead.js` — replay manual com motivo, operador e `dedup_key`
 
-### Frontend presente
+### Frontend
 
-- `src/pages/Index.tsx` — login, tabela de leads e cards de resumo
-- `src/pages/FilaRecuperacao.tsx` — fila de erros e modal de replay
+- `src/pages/Index.tsx` — login, tabela de leads e resumo
+- `src/pages/FilaRecuperacao.tsx` — fila de erros e replay
 - `src/App.tsx` — rotas `/` e `/fila`
 
-## Próxima ação única
+## Encerramento
 
-Champion validar o relatório final da F1-T10 no preview. Após aprovação explícita, concluir F1-T10, atualizar `STATUS.md`, `fase.md` e `changelog.md`, e então publicar o projeto no Skip.
+A Fase 1 foi concluída após a aprovação humana do champion em 2026-08-25. Nenhuma task da próxima fase foi iniciada.

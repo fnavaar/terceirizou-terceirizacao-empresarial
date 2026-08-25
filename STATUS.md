@@ -1,22 +1,24 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-08-25 · **Por:** Auditoria Adapta/ETHOS
+> **Atualizado em:** 2026-08-25 · **Por:** Adapta/ETHOS
 
 ## Onde estamos
 
-- **Fase atual:** 1 — Sistema central de captura, dados e pipeline
-- **Skip:** CRM Oficial, projectId 51268, v0.0.26, QA aprovado
+- **Fase 1:** concluída — 10/10 tasks
+- **Skip:** CRM Oficial, projectId 51268, v0.0.27
 - **Preview:** https://crm-oficial-65bb8--preview.goskip.app
-- **Produção:** não publicada
-- **Tasks concluídas:** 9/10
-- **Task ativa:** F1-T10 — aguardando aprovação humana final
+- **Produção:** https://crm-oficial-65bb8.goskip.app
+- **Publicação:** confirmada em 2026-08-25, ref `cc7ed8e`
+- **QA:** setup, análise estática, build, integrações e testes passaram
 
-## Prova F1-T10
+## Resultado entregue
 
-- CA-1-009: ✅ falha visível na fila
-- CA-1-010: ✅ replay controlado sem duplicidade
-- CA-1-011: ✅ reconciliação da amostra sem alterar fonte
-- CA-1-012: ✅ anônimo não lê fila; autenticado acessa
+- Sistema central de leads no Skip
+- Captura via webhook com validação e idempotência
+- Fila de recuperação com logging e replay manual
+- Reconciliiação de amostra sem alterar fonte histórica
+- RLS da fila protegido contra acesso anônimo
+- Frontend com dashboard de leads e página `/fila`
 
 ## Inventário real do Skip
 
@@ -25,6 +27,6 @@
 - **Hooks:** webhook_lead.js e replay_lead.js
 - **Frontend:** Index.tsx, FilaRecuperacao.tsx e rotas `/` e `/fila`
 
-## Próxima ação
+## Encerramento
 
-Aguardar aprovação humana da F1-T10. Depois: concluir a F1-T10 e publicar produção somente após a conclusão dos gates.
+Fase 1 encerrada após aprovação explícita do champion. Nenhuma task da próxima fase foi iniciada.
