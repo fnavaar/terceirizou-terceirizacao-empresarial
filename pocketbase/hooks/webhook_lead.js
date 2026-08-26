@@ -1,6 +1,38 @@
 // pocketbase/hooks/webhook_lead.js
-// F1-T05: Webhook para receber leads do Google Apps Script
+// F1-T05 + F1-T08: Webhook para receber leads + logging de erros na fila (error_log)
 // POST /backend/v1/webhook/lead
+
+function redigirPayload(payload) {
+  // Nunca logar payload completo com PII; retorna só referências seguras
+  return {
+    has_nome: !!(payload && payload.nome),
+    has_email: !!(payload && payload.email),
+    has_telefone: !!(payload && payload.telefone),
+    origem: (payload && payload.origem) || 'manual',
+  }
+}
+
+function logErro(categoria, resumo, payload, tentativa, dono) {
+  try {
+    const col = $app.findCollectionByNameOrId('error_log')
+    const record = new Record(col)
+    record.set('error_id', $security.randomString(16))
+    record.set('received_at', new Date().toISOString())
+    record.set('source_event_id', (payload && payload.source_event_id) || '')
+    record.set('categoria', categoria)
+    record.set('resumo', resumo)
+    record.set('payload_resumido', JSON.stringify(redigirPayload(payload)))
+    record.set('tentativa', tentativa || 1)
+    record.set('estado', 'manual_review')
+    record.set('dono', dono || 'Responsável técnico')
+    record.set('proxima_acao', 'Revisar causa e reprocessar manualmente')
+    record.set('historico', JSON.stringify([{ acao: 'criacao', ator: 'webhook', data: new Date().toISOString(), detalhes: 'Erro registrado na fila de recuperação' }]))
+    $app.save(record)
+    console.log('Erro registrado em error_log: ' + categoria)
+  } catch (e) {
+    console.log('Falha ao registrar erro na fila: ' + e.message)
+  }
+}
 
 routerAdd(
   'POST',
@@ -8,11 +40,13 @@ routerAdd(
   (e) => {
     const body = e.requestInfo().body
     if (!body || !body.nome) {
+      logErro('validacao', 'Campo obrigatório ausente: nome', body, 1, 'Equipe Técnica')
       return e.json(400, { error: 'Campo obrigatório ausente: nome' })
     }
     const origem = body.origem || 'manual'
     const origensValidas = ['meta_ads', 'cora', 'indicacao', 'manual']
     if (!origensValidas.includes(origem)) {
+      logErro('validacao', 'Origem inválida: ' + origem, body, 1, 'Equipe Técnica')
       return e.json(400, { error: 'Origem inválida: ' + origem })
     }
     const email = body.email || ''
@@ -38,24 +72,29 @@ routerAdd(
       console.log('Lead atualizado (idempotente): ' + dedupKey)
       return e.json(200, { status: 'updated', lead_id: record.get('lead_id'), dedup_key: dedupKey })
     }
-    const col = $app.findCollectionByNameOrId('leads')
-    const record = new Record(col)
-    record.set('lead_id', $security.randomString(12))
-    record.set('opportunity_id', $security.randomString(12))
-    record.set('nome', body.nome)
-    record.set('email', email)
-    record.set('telefone', body.telefone || '')
-    record.set('origem', origem)
-    record.set('campanha', body.campanha || body.conjunto_anuncio || '')
-    record.set('anuncio_criativo', body.anuncio_criativo || body.nome_anuncio || '')
-    record.set('respostas', JSON.stringify({ prestador: body.prestador || '', segmento: body.segmento || '', cargo: body.cargo || '', gestao_financeira: body.gestao_financeira || '', maior_problema: body.maior_problema || '', motivacao: body.motivacao || '', cnpj_cpf: body.cnpj_cpf || '', tipo_empresa: body.tipo_empresa || '', servico_desejado: body.servico_desejado || '', ramo_atividade: body.ramo_atividade || '', estado: body.estado || '', cidade: body.cidade || '', preferencia: body.preferencia_atendimento || '' }))
-    record.set('estagio', 'capturado')
-    record.set('responsavel', body.responsavel || 'Henrique Tavano')
-    record.set('dedup_key', dedupKey)
-    record.set('source_event_id', body.source_event_id || $security.randomString(16))
-    record.set('historico', JSON.stringify([{ acao: 'criacao', ator: 'webhook', data: new Date().toISOString(), detalhes: 'Lead recebido via webhook de ' + origem }]))
-    $app.save(record)
-    console.log('Lead criado via webhook: ' + body.nome + ' (' + dedupKey + ')')
-    return e.json(201, { status: 'created', lead_id: record.get('lead_id'), opportunity_id: record.get('opportunity_id'), dedup_key: dedupKey })
+    try {
+      const col = $app.findCollectionByNameOrId('leads')
+      const record = new Record(col)
+      record.set('lead_id', $security.randomString(12))
+      record.set('opportunity_id', $security.randomString(12))
+      record.set('nome', body.nome)
+      record.set('email', email)
+      record.set('telefone', body.telefone || '')
+      record.set('origem', origem)
+      record.set('campanha', body.campanha || body.conjunto_anuncio || '')
+      record.set('anuncio_criativo', body.anuncio_criativo || body.nome_anuncio || '')
+      record.set('respostas', JSON.stringify({ prestador: body.prestador || '', segmento: body.segmento || '', cargo: body.cargo || '', gestao_financeira: body.gestao_financeira || '', maior_problema: body.maior_problema || '', motivacao: body.motivacao || '', cnpj_cpf: body.cnpj_cpf || '', tipo_empresa: body.tipo_empresa || '', servico_desejado: body.servico_desejado || '', ramo_atividade: body.ramo_atividade || '', estado: body.estado || '', cidade: body.cidade || '', preferencia: body.preferencia_atendimento || '' }))
+      record.set('estagio', 'capturado')
+      record.set('responsavel', body.responsavel || 'Henrique Tavano')
+      record.set('dedup_key', dedupKey)
+      record.set('source_event_id', body.source_event_id || $security.randomString(16))
+      record.set('historico', JSON.stringify([{ acao: 'criacao', ator: 'webhook', data: new Date().toISOString(), detalhes: 'Lead recebido via webhook de ' + origem }]))
+      $app.save(record)
+      console.log('Lead criado via webhook: ' + body.nome + ' (' + dedupKey + ')')
+      return e.json(201, { status: 'created', lead_id: record.get('lead_id'), opportunity_id: record.get('opportunity_id'), dedup_key: dedupKey })
+    } catch (err) {
+      logErro('disponibilidade', 'Falha ao criar lead: ' + err.message, body, 1, 'Equipe Técnica')
+      return e.json(500, { error: 'Falha ao processar lead' })
+    }
   },
 )
