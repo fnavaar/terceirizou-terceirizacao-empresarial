@@ -1,36 +1,26 @@
 {
   "schemaVersion": "adapta-cliente-handoff/v1",
-  "phase": 1,
+  "phase": 2,
   "versions": {
     "package": "0.1.0",
     "adapta": "0.7.0",
     "adaptaCliente": "0.2.0"
   },
-  "generatedAt": "2026-08-19T19:54:49.453Z",
+  "generatedAt": "2026-08-26T16:10:42.394Z",
   "files": [
     {
       "path": "04_fase-atual/README.md",
-      "sha256": "57843f15414253dfbcc46b12fc0860f4aa0481fefdd8440eca68b80a3663f4cc",
+      "sha256": "26cd17bff0ee4dec39fa0c7a9a2f955a5ac54bf50b921384da32b4c3074cfe7d",
       "classification": "template-publico"
     },
     {
       "path": "04_fase-atual/fase.md",
-      "sha256": "bbfafa4a4bcb92ba2beb3e91dff2a03032b34406c44405222b8ce85151977a00",
+      "sha256": "f813434f7421c409fa2d1e3627c00326c70bc27407cf3230d4656b4ed837ffbd",
       "classification": "fase-atual"
     },
     {
-      "path": "04_fase-atual/specs/spec-1-001-modelo-pipeline.md",
-      "sha256": "a43016e7f7ad99700efadd759760567924a31aa70c310a4f53bd3501e6f7e8b7",
-      "classification": "spec-fase-atual"
-    },
-    {
-      "path": "04_fase-atual/specs/spec-1-002-captura-idempotencia.md",
-      "sha256": "f5bda041ab5198ad00974f54cbd6213711acbf10d6f345a76840036bdc7d1414",
-      "classification": "spec-fase-atual"
-    },
-    {
-      "path": "04_fase-atual/specs/spec-1-003-recuperacao-auditoria.md",
-      "sha256": "dc54abeb5b9f9e095f1036fb23326a8f7562729155abcca288c32c3bf4aa4038",
+      "path": "04_fase-atual/specs/spec-2-001-qualificacao-pontuacao-roteamento.md",
+      "sha256": "967420f3bae8853b5cb5e83ffb74ab6fae7c9a49c12f51edfcb536a794ad150a",
       "classification": "spec-fase-atual"
     }
   ]

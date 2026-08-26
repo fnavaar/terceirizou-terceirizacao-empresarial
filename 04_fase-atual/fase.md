@@ -1,19 +1,29 @@
-# Fase 1 — Tarefas gerais
+# Fase 2 — Qualificação, pontuação e roteamento
 
-**Status:** 9/10 tasks concluídas.  
-**Regra:** nenhuma task altera resultado, limite, critério ou prova da SPEC.
+**Status:** liberada para planejamento e execução controlada.
+**Objetivo:** classificar leads recebidos da Fase 1 com pontuação explicável, motivo, responsável, próxima ação e revisão humana.
+
+## Demonstração visível
+
+Uma amostra de leads é classificada como `qualificado`, `nao_qualificado`, `pendente_revisao` ou `excecao`; cada decisão mostra sua regra, motivo, responsável e próxima ação.
 
 ## Tasks
 
-| ID | Leva | Task | Dono | SPEC | Pré-condições | Status |
-|---|---:|---|---|---|---|---|
-| F1-T01 | 1 | Confirmar plataforma central, conta, papéis, campos e RLS | Responsável técnico | spec-1-001 | Aprovação do cliente | ✅ CONCLUÍDA |
-| F1-T02 | 2 | Configurar modelo de lead/oportunidade, pipeline, RLS e histórico | Administrador | spec-1-001 | F1-T01 | ✅ CONCLUÍDA |
-| F1-T03 | 5 | Provar modelo, RLS, histórico e bordas de dado ausente | Responsável comercial | spec-1-001 | F1-T02 + F1-T09 | ✅ CONCLUÍDA |
-| F1-T04 | 1 | Confirmar formulário, destino, campos e idempotência | Responsável técnico | spec-1-002 | Aprovação do cliente | ✅ CONCLUÍDA |
-| F1-T05 | 3 | Configurar captura, validação e upsert idempotente | Responsável técnico | spec-1-002 | F1-T02 + F1-T04 | ✅ CONCLUÍDA |
-| F1-T06 | 5 | Provar criação e replay idempotente | Responsável técnico | spec-1-002 | F1-T05 | ✅ CONCLUÍDA |
-| F1-T07 | 5 | Provar ausências, schema inválido e permissão | Responsável técnico | spec-1-002 | F1-T05 + F1-T09 | ✅ CONCLUÍDA |
-| F1-T08 | 1 | Confirmar fila, retenção, retry, alerta e pausa | Responsável técnico | spec-1-003 | Aprovação do cliente | ✅ CONCLUÍDA |
-| F1-T09 | 4 | Configurar fila de recuperação e replay manual | Responsável técnico | spec-1-003 | F1-T02 + F1-T05 + F1-T08 | ✅ CONCLUÍDA |
-| F1-T10 | 5 | Provar falha, replay, reconciliação e RLS | Responsável comercial | spec-1-003 | F1-T09 | 🔓 DESBLOQUEADA |
+| ID | Leva | Task | Dono | SPEC | Critério binário | Recorte da prova | Evidência esperada | Pré-condições | Ponto de parada | Status |
+|---|---:|---|---|---|---|---|---|---|---|---|
+| F2-T01 | 1 | Confirmar versão inicial da regra, pesos, limiares, carteira, SLA e responsáveis | Consultor + responsável comercial | SPEC-2-001 | Registro aprovado de cada parâmetro e versão de regra | Configuração em amostra sintética | Registro datado da versão 1 | Acesso ao ambiente e amostra sintética | Regra comercial ambígua | PENDENTE |
+| F2-T02 | 2 | Modelar estados, decisão, pontuação explicável, histórico e versão de regra | Responsável técnico | SPEC-2-001 | Lead sintético armazena estado, componentes, versão, motivo, responsável e próxima ação | Modelo de um lead completo | Registro e histórico auditável | F2-T01 | Exigir fonte externa ou regra não aprovada | BLOQUEADA |
+| F2-T03 | 3 | Implementar classificação determinística e roteamento de casos completo/negativo | Responsável técnico | SPEC-2-001 | Casos completo e prestador negativo atendem CA-2-001/002 | Fixtures completo e negativo | Estados, motivos e destinos registrados | F2-T02 | Regra não aplicável sem inferência | BLOQUEADA |
+| F2-T04 | 4 | Implementar fila de revisão/exceção e correção humana auditável | Responsável técnico + comercial | SPEC-2-001 | Casos incompleto/conflito e correção humana atendem CA-2-003/004 | Fixtures incompleto, conflito e correção | Histórico com ator, horário e versão | F2-T02 | Revisão apagar histórico | BLOQUEADA |
+| F2-T05 | 5 | Provar cenários, acesso por papel, rollback e aceite do champion | Responsável comercial | SPEC-2-001 | CA-2-001..005 comprovados com fixtures sintéticas e teste humano | Roteiro de regressão e acesso negativo | Matriz de evidências e aceite humano | F2-T03 + F2-T04 | Cenário ou teste humano falhar | BLOQUEADA |
+
+## Fora desta fase
+
+- Decisão autônoma de contratação.
+- Enriquecimento de dados externo.
+- Alteração de campanhas.
+- Integrações novas não aprovadas.
+
+## Regra de avanço
+
+F2-T01 é a única task elegível. Não iniciar a próxima task sem teste humano explícito da anterior.
