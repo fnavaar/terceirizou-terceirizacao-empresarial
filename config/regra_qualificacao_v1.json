@@ -1,0 +1,98 @@
+{
+  "versao": "1.0",
+  "data_registro": "2026-08-31",
+  "aprovado_por": "Vinicius (CEO)",
+  "fase": 2,
+  "task_origem": "F2-T01",
+  "objetivo": "Registrar a versao 1 da regra de qualificacao, pontuacao e roteamento de leads (SPEC-2-001).",
+  "modelo_negocio": {
+    "perfil_aceito": "prestador de servicos",
+    "regra_inegociavel": "nunca cliente que vende ou fabrica produtos",
+    "carteira_segmentos": [
+      "casas_de_repouso_ilpi",
+      "associacoes_protecao_veicular",
+      "vistorias_veicular",
+      "escritorios_arquitetura",
+      "agencias_marketing",
+      "consultorias_ambientais",
+      "consultorias_negocio",
+      "clinicas_estetica",
+      "outros_segmentos_prestacao_servico"
+    ],
+    "segmentos_excluidos": ["comercio", "industria"]
+  },
+  "estados": ["pendente_revisao", "qualificado", "nao_qualificado", "excecao"],
+  "pesos": {
+    "segmento_na_carteira": 2,
+    "receita_ou_faturamento_informado": 2,
+    "cargo_decisor": 1,
+    "segmento_excluido": -3
+  },
+  "limiares": {
+    "qualificado_minimo": 4,
+    "pendente_faixa": "0-3"
+  },
+  "regras_decisao_ordem": [
+    { "se": "prestador negativo explicito", "entao": "nao_qualificado", "motivo": "regra inegociavel: nao atende perfil" },
+    { "se": "conflito entre prestador e segmento", "entao": "pendente_revisao", "motivo": "conflito: prestador x segmento" },
+    { "se": "segmento excluido (comercio/industria)", "entao": "nao_qualificado", "motivo": "segmento fora do perfil" },
+    { "se": "dados criticos ausentes (sem segmento ou cargo)", "entao": "pendente_revisao", "motivo": "dados criticos ausentes" },
+    { "se": "segmento nao mapeado", "entao": "excecao", "motivo": "segmento nao mapeado" },
+    { "se": "score >= limiar", "entao": "qualificado", "motivo": "score acima do limiar" },
+    { "senao": "pendente_revisao", "motivo": "score abaixo do limiar" }
+  ],
+  "sla": {
+    "revisao_humana_horas_uteis": 24
+  },
+  "responsaveis": {
+    "meta_ads": "Henrique Tavano",
+    "cora": "Henrique Tavano",
+    "manual": "Henrique Tavano",
+    "excecao": "Vinicius Oliveira da Costa",
+    "aprovacao_regra": "Vinicius (CEO)"
+  },
+  "amostra_sintetica": [
+    {
+      "id": "S-001",
+      "descricao": "lead completo: prestador servico, cargo decisor, faturamento informado",
+      "respostas": { "prestador": "sim", "segmento": "consultorias_negocio", "cargo": "socio_proprietario", "faturamento": "r$_30_mil_a_r$_80_mil" },
+      "esperado": "qualificado",
+      "score": 5
+    },
+    {
+      "id": "S-002",
+      "descricao": "prestador servico sem receita informada",
+      "respostas": { "prestador": "sim", "segmento": "clinicas_estetica", "cargo": "socio_proprietario", "faturamento": "" },
+      "esperado": "pendente_revisao",
+      "score": 3
+    },
+    {
+      "id": "S-003",
+      "descricao": "prestador negativo explicito",
+      "respostas": { "prestador": "nao", "segmento": "comercio", "cargo": "socio_proprietario", "faturamento": "r$_80_mil_a_r$_200_mil" },
+      "esperado": "nao_qualificado",
+      "score": null
+    },
+    {
+      "id": "S-004",
+      "descricao": "segmento excluido (industria) sem resposta de prestador",
+      "respostas": { "prestador": "", "segmento": "industria", "cargo": "socio_proprietario", "faturamento": "acima_de_r$_200_mil" },
+      "esperado": "nao_qualificado",
+      "score": null
+    },
+    {
+      "id": "S-005",
+      "descricao": "incompleto: sem segmento e sem cargo",
+      "respostas": { "prestador": "sim", "segmento": "", "cargo": "", "faturamento": "" },
+      "esperado": "pendente_revisao",
+      "score": null
+    },
+    {
+      "id": "S-006",
+      "descricao": "conflito: diz prestador mas segmento comercio",
+      "respostas": { "prestador": "sim", "segmento": "comercio", "cargo": "socio_proprietario", "faturamento": "r$_30_mil_a_r$_80_mil" },
+      "esperado": "pendente_revisao",
+      "score": null
+    }
+  ]
+}
