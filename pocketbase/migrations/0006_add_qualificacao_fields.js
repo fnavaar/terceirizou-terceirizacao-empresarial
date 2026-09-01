@@ -2,14 +2,15 @@
 // F2-T02: Adicionar campos de qualificação, pontuação e roteamento à collection leads.
 //
 // ADITIVA — não altera dados existentes, apenas acrescenta campos:
-//   estado_qualificacao  text (resultado da regra v1)
+//   estado_qualificacao  text   (resultado da regra v1)
 //   score                number (pontuação total)
-//   score_componentes    json  (componentes nomeados p/ decisão explicável)
-//   regra_versao         text  (versão da regra usada na decisão)
-//   motivo_decisao       text  (motivo legível)
-//   proxima_acao         text  (ação recomendada)
+//   score_componentes    json   (componentes nomeados p/ decisão explicável)
+//   regra_versao         text   (versão da regra usada na decisão)
+//   motivo_decisao       text   (motivo legível)
+//   proxima_acao         text   (ação recomendada)
 //
 // Rollback: remove apenas estes campos (não toca nas outras colunas).
+// Aplicada no Skip Cloud via MCP em 2026-09-01 (v0.0.29) — sem deploy manual.
 
 migrate(
   (app) => {
@@ -18,12 +19,12 @@ migrate(
     // Evita duplicar se a migration rodar mais de uma vez
     const nomes = new Set(collection.fields.map((f) => f.name))
     const novos = [
-      { name: 'estado_qualificacao', type: 'text', required: false },
-      { name: 'score', type: 'number', required: false },
-      { name: 'score_componentes', type: 'json', required: false },
-      { name: 'regra_versao', type: 'text', required: false },
-      { name: 'motivo_decisao', type: 'text', required: false },
-      { name: 'proxima_acao', type: 'text', required: false },
+      new TextField({ name: 'estado_qualificacao', required: false }),
+      new NumberField({ name: 'score', required: false }),
+      new JSONField({ name: 'score_componentes', required: false }),
+      new TextField({ name: 'regra_versao', required: false }),
+      new TextField({ name: 'motivo_decisao', required: false }),
+      new TextField({ name: 'proxima_acao', required: false }),
     ]
     for (const f of novos) {
       if (!nomes.has(f.name)) {
@@ -36,9 +37,13 @@ migrate(
   (app) => {
     const collection = app.findCollectionByNameOrId('leads')
     const remover = ['estado_qualificacao', 'score', 'score_componentes', 'regra_versao', 'motivo_decisao', 'proxima_acao']
-    const nomes = new Set(remover)
-    const novos = collection.fields.filter((f) => !nomes.has(f.name))
-    collection.fields = novos
+    for (const nome of remover) {
+      try {
+        collection.fields.removeByName(nome)
+      } catch (_) {
+        // campo já não existe
+      }
+    }
     app.save(collection)
     console.log('Migration 0006 revertida: campos de qualificação removidos')
   },
