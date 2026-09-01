@@ -1,5 +1,10 @@
 # Changelog — Projeto Terceirizou Terceirização Empresarial
 
+## 2026-09-01
+
+- [champion] F2-T01 validada pelo consultor (declarado pelo champion). F2-T02 aberta para análise.
+- [Adapta/Ethos] F2-T02 analisada: modelar estados, decisão, pontuação explicável, histórico e versão de regra. Apresentado plano (migration 0006 aditiva + fixture sintética sem PII + prova via API) e parado aguardando autorização do champion.
+
 ## 2026-08-31
 
 - [champion] F2-T01 concluída: regra v1 aprovada e validada — config/regra_qualificacao_v1.json + scripts/validar_regra_qualificacao_v1.py (6/6 PASS sintéticos; revalidação do zero OK; sem segredos/PII). Aprovação humana registrada.
