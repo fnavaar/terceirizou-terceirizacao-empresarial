@@ -1,9 +1,14 @@
 # Changelog — Projeto Terceirizou Terceirização Empresarial
 
+## 2026-09-02
+
+- [champion] Task F2-T02 concluída: modelo de qualificação aplicado via MCP no Skip (migration 0006, v0.0.29); prova real com lead sintético 08r5jllzfeuonp0 (6 campos presentes e persistentes). Aprovado pelo champion ("testado e aprovado").
+
 ## 2026-09-01
 
 - [champion] F2-T01 validada pelo consultor (declarado pelo champion). F2-T02 aberta para análise.
 - [Adapta/Ethos] F2-T02 analisada: modelar estados, decisão, pontuação explicável, histórico e versão de regra. Apresentado plano (migration 0006 aditiva + fixture sintética sem PII + prova via API) e parado aguardando autorização do champion.
+- [Adapta/Ethos] F2-T02 aplicada via MCP do Skip (migration 0006, v0.0.29, sem deploy manual); lead sintético 08r5jllzfeuonp0 validou os campos; GitHub sincronizado (a12d9cc).
 
 ## 2026-08-31
 
