@@ -4,6 +4,7 @@
 
 - [champion] Task F2-T02 concluída: modelo de qualificação aplicado via MCP no Skip (migration 0006, v0.0.29); prova real com lead sintético 08r5jllzfeuonp0 (6 campos presentes e persistentes). Aprovado pelo champion ("testado e aprovado").
 - [Adapta/Ethos] F2-T03 autorizada pelo champion ("Pode implementar"); estado para `implementando`. Implementação: hooks `qualificar_lead_create` (onRecordCreate em leads) e `qualificar_lead_update` (onRecordUpdate, recomputa quando respostas mudam) aplicando a regra v1 da F2-T01 — inline, sem loop de save.
+- [Adapta/Ethos] F2-T03 implementada e verificada no Skip (v0.0.32): hooks qualificar_lead_create/update aplicados; fixtures sintéticas 6/6 (regra v1: completo->qualificado score5, sem receita->pendente score3, prestador nao->nao_qualificado, industria->nao_qualificado, incompleto->pendente, conflito->pendente); reclassificação via update OK (sem receita->com receita virou qualificado). Corrigida leitura de `respostas` (Uint8Array->string no runtime goja).
 
 ## 2026-09-01
 
