@@ -3,9 +3,9 @@
 ## 2026-09-02
 
 - [champion] Task F2-T03 concluída: classificação determinística e roteamento de casos completo/negativo aplicados no Skip (hooks qualificar_lead_create/update, v0.0.32). Fixtures 6/6 da regra v1; reclassificação via update OK; validado pelo champion via planilha + dados do banco (Teste Humano OK -> qualificado; Teste Humano Nao -> nao_qualificado).
+- [Adapta/Ethos] F2-T04 autorizada pelo champion ("pode implementar"); estado para `implementando`. Implementação: endpoints `GET /backend/v1/fila-revisao` (lista pendente_revisao/excecao) e `POST /backend/v1/revisar-lead` (correção humana com histórico auditável), sem migration nova.
 - [Adapta/Ethos] Lacuna de produto registrada (não é SPEC): painel atual (Index.tsx) não tem coluna de qualificação (estado/score/motivo) nem botão para criar lead. Decisão do champion: validar F2-T03 com evidência de dados; lacuna documentada em 06_notas/F3-candidata-frontend-leads.md para o consultor decidir (candidata a F3/frontend).
 - [Adapta/Ethos] Aprendizado capturado: campos JSON no runtime goja do Skip chegam como Uint8Array/bytes — converter para string antes do JSON.parse (AP-2026-09-02-1337).
-- [Adapta/Ethos] F2-T03 autorizada pelo champion ("Pode implementar"); estado para `implementando`. Implementação: hooks `qualificar_lead_create` (onRecordCreate em leads) e `qualificar_lead_update` (onRecordUpdate, recomputa quando respostas mudam) aplicando a regra v1 da F2-T01 — inline, sem loop de save.
 
 ## 2026-09-01
 
