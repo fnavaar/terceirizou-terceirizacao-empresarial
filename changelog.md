@@ -2,12 +2,14 @@
 
 ## 2026-09-02
 
-- [champion] Task F2-T02 concluída: modelo de qualificação aplicado via MCP no Skip (migration 0006, v0.0.29); prova real com lead sintético 08r5jllzfeuonp0 (6 campos presentes e persistentes). Aprovado pelo champion ("testado e aprovado").
+- [champion] Task F2-T03 concluída: classificação determinística e roteamento de casos completo/negativo aplicados no Skip (hooks qualificar_lead_create/update, v0.0.32). Fixtures 6/6 da regra v1; reclassificação via update OK; validado pelo champion via planilha + dados do banco (Teste Humano OK -> qualificado; Teste Humano Nao -> nao_qualificado).
+- [Adapta/Ethos] Lacuna de produto registrada (não é SPEC): painel atual (Index.tsx) não tem coluna de qualificação (estado/score/motivo) nem botão para criar lead. Decisão do champion: validar F2-T03 com evidência de dados; lacuna documentada em 06_notas/F3-candidata-frontend-leads.md para o consultor decidir (candidata a F3/frontend).
+- [Adapta/Ethos] Aprendizado capturado: campos JSON no runtime goja do Skip chegam como Uint8Array/bytes — converter para string antes do JSON.parse (AP-2026-09-02-1337).
 - [Adapta/Ethos] F2-T03 autorizada pelo champion ("Pode implementar"); estado para `implementando`. Implementação: hooks `qualificar_lead_create` (onRecordCreate em leads) e `qualificar_lead_update` (onRecordUpdate, recomputa quando respostas mudam) aplicando a regra v1 da F2-T01 — inline, sem loop de save.
-- [Adapta/Ethos] F2-T03 implementada e verificada no Skip (v0.0.32): hooks qualificar_lead_create/update aplicados; fixtures sintéticas 6/6 (regra v1: completo->qualificado score5, sem receita->pendente score3, prestador nao->nao_qualificado, industria->nao_qualificado, incompleto->pendente, conflito->pendente); reclassificação via update OK (sem receita->com receita virou qualificado). Corrigida leitura de `respostas` (Uint8Array->string no runtime goja).
 
 ## 2026-09-01
 
+- [champion] Task F2-T02 concluída: modelo de qualificação aplicado via MCP no Skip (migration 0006, v0.0.29); prova real com lead sintético 08r5jllzfeuonp0 (6 campos presentes e persistentes). Aprovado pelo champion ("testado e aprovado").
 - [champion] F2-T01 validada pelo consultor (declarado pelo champion). F2-T02 aberta para análise.
 - [Adapta/Ethos] F2-T02 analisada: modelar estados, decisão, pontuação explicável, histórico e versão de regra. Apresentado plano (migration 0006 aditiva + fixture sintética sem PII + prova via API) e parado aguardando autorização do champion.
 - [Adapta/Ethos] F2-T02 aplicada via MCP do Skip (migration 0006, v0.0.29, sem deploy manual); lead sintético 08r5jllzfeuonp0 validou os campos; GitHub sincronizado (a12d9cc).
