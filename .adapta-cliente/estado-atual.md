@@ -3,11 +3,11 @@
 - task_id: F2-T03
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-2-001-qualificacao-pontuacao-roteamento.md
-- etapa: aguardando_autorizacao
-- autorizacao_implementacao: ausente
+- etapa: implementando
+- autorizacao_implementacao: confirmada + 2026-09-02T10:28:00-03:00 — "Pode implementar"
 - teste_humano: pendente
-- verificacao_automatica: pendente — hooks de classificação ainda não implementados
+- verificacao_automatica: pendente — hooks ainda não aplicados
 - aprendizado: pendente
-- ultima_acao: F2-T02 concluída e validada pelo consultor; F2-T03 analisada (plano apresentado: hooks classificar_lead + fixtures sintéticas)
-- proxima_acao: aguardar autorizacao do champion para implementar (hooks classificar_lead_create/update)
-- atualizado_em: 2026-09-02T09:05:00-03:00
+- ultima_acao: autorização do champion para implementar F2-T03 (hooks qualificar_lead_create/update)
+- proxima_acao: aplicar hooks no Skip via MCP e rodar fixtures sintéticas
+- atualizado_em: 2026-09-02T10:30:00-03:00
