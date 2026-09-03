@@ -1,6 +1,6 @@
 # Fase 2 — Qualificação, pontuação e roteamento
 
-**Status:** ✅ CONCLUÍDA (aguardando validação do consultor) — 5/5 tasks.
+**Status:** ✅ ENCERRADA pelo champion (Vinicius) em 2026-09-03 — 5/5 tasks. Validação formal do consultor segue registrada como pendente de conferência.
 **Objetivo:** classificar leads recebidos da Fase 1 com pontuação explicável, motivo, responsável, próxima ação e revisão humana.
 
 ## Demonstração visível
@@ -26,7 +26,7 @@ Uma amostra de leads é classificada como `qualificado`, `nao_qualificado`, `pen
 
 ## Regra de avanço
 
-Todas as tasks concluídas (5/5). Fase 2 aguarda validação do consultor para encerramento formal.
+Fase 2 encerrada (5/5). A Fase 3 ainda não possui SPEC publicada pelo consultor — para abrir, depende de SPEC/planejamento do consultor (candidata registrada em `06_notas/F3-candidata-frontend-leads.md`).
 
 ## Registro de prova da Fase 2 (síntese)
 

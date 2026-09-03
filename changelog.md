@@ -2,6 +2,7 @@
 
 ## 2026-09-03
 
+- [champion] Fase 2 encerrada formalmente pelo champion (5/5 tasks, CA-2-001..005 comprovados). Fase 2 marcada como ENCERRADA; aguarda conferência formal do consultor. Fase 3 ainda sem SPEC publicada — depende do consultor (candidata frontend em 06_notas/F3-candidata-frontend-leads.md).
 - [champion] Task F2-T05 concluída: prova final da Fase 2 executada — regressão CA-2-001..004, acesso por papel (CA-2-005: comercial não altera lead de outro responsável, 404) e rollback (devolver à fila preservando histórico, 2 eventos). Aceite do champion registrado. Fase 2 completa (5/5).
 
 ## 2026-09-02
