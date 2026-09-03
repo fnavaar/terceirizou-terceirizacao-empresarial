@@ -1,5 +1,9 @@
 # Changelog — Projeto Terceirizou Terceirização Empresarial
 
+## 2026-09-03
+
+- [champion] Task F2-T05 concluída: prova final da Fase 2 executada — regressão CA-2-001..004, acesso por papel (CA-2-005: comercial não altera lead de outro responsável, 404) e rollback (devolver à fila preservando histórico, 2 eventos). Aceite do champion registrado. Fase 2 completa (5/5).
+
 ## 2026-09-02
 
 - [champion] Task F2-T04 concluída: fila de revisão/exceção e correção humana auditável aplicadas no Skip (endpoints fila-revisao e revisar-lead, v0.0.35). Historico com ator, data, decisao, anterior, motivo e versao; sem-auth 401; fila remaneja apos revisao. Aprovado pelo champion ("Funcionou").

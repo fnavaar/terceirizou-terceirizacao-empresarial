@@ -1,28 +1,27 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-09-02 · **Por:** Adapta/ETHOS
+> **Atualizado em:** 2026-09-03 · **Por:** Adapta/ETHOS
 
 ## Onde estamos
 
-- **Fase atual:** 2 — qualificação, pontuação e roteamento.
+- **Fase atual:** 2 — qualificação, pontuação e roteamento. **5/5 tasks concluídas.**
 - **Fase 1:** arquivada no histórico do repositório (10/10 tasks concluídas).
-- **F2-T01:** ✅ CONCLUÍDA e aprovada pelo champion — versão 1 da regra registrada e validada (6/6 casos sintéticos PASS).
-- **F2-T02:** ✅ CONCLUÍDA e aprovada pelo champion — modelo de qualificação aplicado no Skip via MCP (migration 0006, v0.0.29), prova real com lead sintético, 6 campos presentes e persistentes.
-- **F2-T03:** ✅ CONCLUÍDA e aprovada pelo champion — classificação determinística e roteamento (hooks qualificar_lead_create/update, v0.0.32); fixtures 6/6, reclassificação via update OK; validada via planilha + dados do banco.
-- **F2-T04:** ✅ CONCLUÍDA e aprovada pelo champion — fila de revisão/exceção e correção humana auditável (endpoints fila-revisao e revisar-lead, v0.0.35); histórico com ator/data/motivo/versão; sem-auth 401.
-- **Próxima task elegível:** F2-T05 — provar cenários, acesso por papel, rollback e aceite do champion. (A iniciar somente após validação do consultor.)
+- **F2-T01 a F2-T05:** ✅ todas CONCLUÍDAS e aprovadas pelo champion.
+- **Status da Fase 2:** completa e aguardando **validação do consultor** para encerramento formal.
 - **Publicação:** material da Fase 2 sincronizado no repositório do cliente.
 
-## Entregue em F2-T04
+## Entregas consolidadas
 
-- Endpoints `GET /backend/v1/fila-revisao` e `POST /backend/v1/revisar-lead` aplicados no Skip Cloud (v0.0.35).
-- Fila lista pendente_revisao/excecao com motivo/score/responsável; correção humana grava histórico com ator, data, decisão, anterior, motivo e versão da regra; sem-auth 401; fila remaneja após revisão.
-- Validação humana: champion confirmou "Funcionou" (2026-09-02).
+- **Regra v1** (F2-T01): config/regra_qualificacao_v1.json + validador 6/6.
+- **Modelo** (F2-T02): migration 0006, 6 campos de qualificação em `leads` (v0.0.29).
+- **Classificação** (F2-T03): hooks qualificar_lead_create/update (v0.0.32) — regra v1 na criação e reclassificação.
+- **Fila + correção** (F2-T04): endpoints fila-revisao e revisar-lead com histórico auditável (v0.0.35).
+- **Prova final** (F2-T05): matriz de evidências CA-2-001..005, acesso por papel e rollback.
 
 ## Lacunas registradas (para consultor)
 
-- Painel (Index.tsx) não exibe coluna de qualificação (estado/score/motivo) nem tem botão para criar lead. Fora da SPEC-2-001; documentado em 06_notas/F3-candidata-frontend-leads.md (candidata a F3/frontend).
+- Painel (Index.tsx) não exibe coluna de qualificação nem tem botão para criar lead. Fora da SPEC-2-001; documentado em 06_notas/F3-candidata-frontend-leads.md (candidata a F3/frontend).
 
 ## Próximo passo
 
-Aguardar validação do consultor e iniciar F2-T05 (prova de cenários, acesso por papel, rollback e aceite do champion) para fechar a Fase 2.
+Aguardar validação do consultor para encerrar a Fase 2 e decidir sobre a F3 (frontend) / próximas fases.
