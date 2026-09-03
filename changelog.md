@@ -2,8 +2,9 @@
 
 ## 2026-09-02
 
-- [Adapta/Ethos] F2-T04 implementada e verificada no Skip (v0.0.35): endpoints `GET /backend/v1/fila-revisao` (leads em pendente_revisao/excecao, com motivo/score/responsavel) e `POST /backend/v1/revisar-lead` (correcao humana com historico auditavel: ator, data, decisao, anterior, motivo, regra_versao). Sem-auth 401; fila remaneja apos revisao. Corrigida leitura do campo json `historico` (bytes->string inline, sem top-level — regra do runtime goja).
+- [champion] Task F2-T04 concluída: fila de revisão/exceção e correção humana auditável aplicadas no Skip (endpoints fila-revisao e revisar-lead, v0.0.35). Historico com ator, data, decisao, anterior, motivo e versao; sem-auth 401; fila remaneja apos revisao. Aprovado pelo champion ("Funcionou").
 - [champion] Task F2-T03 concluída: classificação determinística e roteamento de casos completo/negativo aplicados no Skip (hooks qualificar_lead_create/update, v0.0.32). Fixtures 6/6 da regra v1; reclassificação via update OK; validado pelo champion via planilha + dados do banco (Teste Humano OK -> qualificado; Teste Humano Nao -> nao_qualificado).
+- [Adapta/Ethos] F2-T04 implementada e verificada no Skip (v0.0.35): endpoints `GET /backend/v1/fila-revisao` (leads em pendente_revisao/excecao, com motivo/score/responsavel) e `POST /backend/v1/revisar-lead` (correcao humana com historico auditavel: ator, data, decisao, anterior, motivo, regra_versao). Sem-auth 401; fila remaneja apos revisao. Corrigida leitura do campo json `historico` (bytes->string inline, sem top-level — regra do runtime goja).
 - [Adapta/Ethos] F2-T04 autorizada pelo champion ("pode implementar"); estado para `implementando`. Implementação: endpoints `GET /backend/v1/fila-revisao` (lista pendente_revisao/excecao) e `POST /backend/v1/revisar-lead` (correção humana com histórico auditável), sem migration nova.
 - [Adapta/Ethos] Lacuna de produto registrada (não é SPEC): painel atual (Index.tsx) não tem coluna de qualificação (estado/score/motivo) nem botão para criar lead. Decisão do champion: validar F2-T03 com evidência de dados; lacuna documentada em 06_notas/F3-candidata-frontend-leads.md para o consultor decidir (candidata a F3/frontend).
 - [Adapta/Ethos] Aprendizado capturado: campos JSON no runtime goja do Skip chegam como Uint8Array/bytes — converter para string antes do JSON.parse (AP-2026-09-02-1337).
@@ -19,7 +20,7 @@
 
 - [champion] F2-T01 concluída: regra v1 aprovada e validada — config/regra_qualificacao_v1.json + scripts/validar_regra_qualificacao_v1.py (6/6 PASS sintéticos; revalidação do zero OK; sem segredos/PII). Aprovação humana registrada.
 - [Adapta/Ethos] Abrida F2-T01 (confirmar regra v1, pesos, limiares, carteira, SLA e responsáveis). Análise com baseline real (86 leads; 45 meta_ads, 36 cora, 5 manual; 44 sem segmento; 0 prestador negativo explícito). Proposta de regra v1 apresentada; aguardando autorização do champion.
-- [Adapta/Ethos] Automacão EThOS migrada para a planilha própria de leads Meta Ads (1GiZZj...); leitura validada (1 lead nov o criado, demais igno rados por dedup).
+- [Adapta/Ethos] Automação ETHOS migrada para a planilha própria de leads Meta Ads (1GiZZj...); leitura validada (1 lead novo criado, demais ignorados por dedup).
 - [Adapta/Ethos] Apps Script F1-T05 atualizado: META_ADS_SHEET_ID → planilha própria (1GiZZj...), WEBHOOK_URL → domínio público goskip.app. Aviso: publico do webhook responde 405 até a rota ser publicada no Skip.
 
 ## 2026-08-26

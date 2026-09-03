@@ -6,3 +6,4 @@ na resposta comum ao cliente.
 - 2026-08-31T12:58:00-03:00 · F2-T01 · capturado: config/regra_qualificacao_v1.json + scripts/validar_regra_qualificacao_v1.py
 - 2026-09-02T08:10:00-03:00 · F2-T02 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-02-0810-migracao-skip-via-mcp.md
 - 2026-09-02T13:37:00-03:00 · F2-T03 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-02-1337-json-uint8array-skip.md
+- 2026-09-02T17:20:00-03:00 · F2-T04 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-02-1720-json-bytes-historico.md

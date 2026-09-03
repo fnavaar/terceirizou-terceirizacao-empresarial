@@ -1,13 +1,13 @@
 # Estado atual — Adapta Cliente
 
-- task_id: F2-T04
+- task_id: F2-T05
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-2-001-qualificacao-pontuacao-roteamento.md
-- etapa: aguardando_teste_humano
-- autorizacao_implementacao: confirmada + 2026-09-02T14:18:00-03:00 — "pode implementar"
-- teste_humano: pendente
-- verificacao_automatica: passou — endpoints fila-revisao (GET) e revisar-lead (POST) aplicados no Skip (v0.0.35); fila lista pendente_revisao/excecao; sem-auth 401; correcao humana grava historico auditavel (ator/data/motivo/anterior/versao) sem apagar
-- aprendizado: pendente
-- ultima_acao: F2-T04 implementada e verificada — endpoints de fila de revisao e correcao humana auditavel (v0.0.35)
-- proxima_acao: aguardar teste humano do champion (acessar fila e revisar um lead pelo admin/API)
-- atualizado_em: 2026-09-02T14:25:00-03:00
+- etapa: sem_task
+- autorizacao_implementacao: ausente
+- teste_humano: aprovado + 2026-09-02T17:20:00-03:00 — F2-T04 validada pelo champion ("Funcionou")
+- verificacao_automatica: passou — fila de revisao e correcao humana auditavel aplicadas no Skip (v0.0.35); sem-auth 401; historico com ator/data/anterior/motivo/versao; fila remaneja apos revisao
+- aprendizado: capturado:06_notas/aprendizado-continuo/AP-2026-09-02-1720-json-bytes-historico.md
+- ultima_acao: F2-T04 concluida — endpoints fila-revisao e revisar-lead auditavel (v0.0.35); aprovada pelo champion
+- proxima_acao: aguardar validacao do consultor para abrir F2-T05 (prova de cenarios, acesso por papel, rollback e aceite)
+- atualizado_em: 2026-09-02T17:20:00-03:00
