@@ -5,22 +5,30 @@
 ## Onde estamos
 
 - **Fase 1:** concluída (10/10).
-- **Fase 2 — qualificação, pontuação e roteamento:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01 concluída; 1/7 tasks (14,3%).
-- **Calendário de teste:** `financeiro@terceirizou.com.br`, owner, primary, fuso `America/Sao_Paulo`.
-- **Publicação:** material sincronizado no repositório do cliente.
+- **Fase 2:** concluída (5/5).
+- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 implementada e aguardando teste humano (2/7 em execução, 1/7 concluída).
+- **Skip:** v0.0.37, hash `a8d7a8d`.
+- **Calendário:** `financeiro@terceirizou.com.br`, owner/primary, `America/Sao_Paulo`.
 
-## Entrega F3-T01
+## F3-T02 implementada
 
-- OAuth Google Calendar confirmado.
-- Calendário de teste acessível com permissão de proprietário.
-- Duração: 30 minutos.
-- Janela: segunda a sexta, das 09h às 12h e das 14h às 18h.
-- Responsável: Henrique Tavano.
-- Cancelamento: excluir do calendário e notificar `financeiro@terceirizou.com.br`.
-- No-show: enviar e-mail para quem marcou a reunião solicitando novo horário.
-- Teste humano aprovado pelo champion em 2026-09-05.
+- Migration `0007_add_agendamento_fields.js` aplicada.
+- Endpoint autenticado `POST /backend/v1/agendar-lead` criado.
+- Somente `estado_qualificacao = qualificado` pode avançar.
+- Janela validada: 30 minutos, segunda a sexta, 09h–12h e 14h–18h.
+- Idempotência por `lead_id + tipo + janela`.
+- Sem token Google no cofre: retorna 503 seguro, registra pendência e não cria evento.
+- Com token: chamada ao Calendar registra referência do evento no CRM.
+- Fuso validado explicitamente como `America/Sao_Paulo`.
+
+## QA
+
+- Setup: passou.
+- Static analysis: passou.
+- Build: passou.
+- Integrações: passou.
+- Testes: passou.
 
 ## Próximo passo
 
-Analisar a F3-T02. Nenhum evento real ou integração de produção foi criado na F3-T01.
+Teste humano controlado da F3-T02. F3-T03 não foi iniciada.
