@@ -7,6 +7,7 @@
 - Elegibilidade: somente `estado_qualificacao = qualificado`
 - Janela: 30 minutos; segunda a sexta; 09h–12h e 14h–18h; fuso `America/Sao_Paulo`
 - Idempotência: `lead_id + tipo + janela`
-- Sem token no cofre: HTTP 503, estado `pendente_configuracao`, sem chamada ao Calendar
+- Lead sintético criado: `F3T02-SINTETICO-QUALIFICADO`, registro `4hztghz2g3erjzv`, score 5, estado `qualificado`
 - QA: setup, static analysis, build, integrations e test — todos passaram
-- Limite: criação real do evento depende de `GOOGLE_CALENDAR_ACCESS_TOKEN` em cofre e teste humano controlado; nenhum evento foi criado nesta implementação.
+- Teste humano: falhou porque o frontend não permite acessar o lead nem acionar o agendamento.
+- Limite: F3-T03 permanece bloqueada até correção do frontend e aprovação do teste humano da F3-T02.
