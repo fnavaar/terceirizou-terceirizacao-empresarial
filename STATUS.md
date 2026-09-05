@@ -1,27 +1,26 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-09-03 · **Por:** Adapta/ETHOS
+> **Atualizado em:** 2026-09-05 · **Por:** Adapta/ETHOS
 
 ## Onde estamos
 
 - **Fase 1:** concluída (10/10).
-- **Fase 2 — qualificação, pontuação e roteamento:** ✅ ENCERRADA pelo champion (5/5) — 2026-09-03.
-- **Fase 3:** não iniciada — aguardando SPEC publicada pelo consultor.
+- **Fase 2 — qualificação, pontuação e roteamento:** concluída (5/5).
+- **Fase 3:** em andamento — F3-T01 concluída; 1/7 tasks (14,3%).
+- **Calendário de teste:** `financeiro@terceirizou.com.br`, owner, primary, fuso `America/Sao_Paulo`.
 - **Publicação:** material sincronizado no repositório do cliente.
 
-## Entregas consolidadas (Fase 2)
+## Entrega F3-T01
 
-- **Regra v1** (F2-T01): config/regra_qualificacao_v1.json + validador 6/6.
-- **Modelo** (F2-T02): migration 0006, 6 campos de qualificação em `leads` (v0.0.29).
-- **Classificação** (F2-T03): hooks qualificar_lead_create/update (v0.0.32).
-- **Fila + correção** (F2-T04): endpoints fila-revisao e revisar-lead com histórico auditável (v0.0.35).
-- **Prova final** (F2-T05): matriz de evidências CA-2-001..005, acesso por papel e rollback.
-
-## Lacunas / pendências
-
-- **Validação formal do consultor** para conferência do encerramento da Fase 2 (champion encerrou em 2026-09-03).
-- **F3 candidata (frontend):** painel (Index.tsx) não exibe coluna de qualificação nem botão de criar lead. Fora da SPEC-2-001; documentado em `06_notas/F3-candidata-frontend-leads.md` — aguardando decisão do consultor para virar SPEC.
+- OAuth Google Calendar confirmado.
+- Calendário de teste acessível com permissão de proprietário.
+- Duração: 30 minutos.
+- Janela: segunda a sexta, das 09h às 12h e das 14h às 18h.
+- Responsável: Henrique Tavano.
+- Cancelamento: excluir do calendário e notificar `financeiro@terceirizou.com.br`.
+- No-show: enviar e-mail para quem marcou a reunião solicitando novo horário.
+- Teste humano aprovado pelo champion em 2026-09-05.
 
 ## Próximo passo
 
-Aguardar o consultor publicar a SPEC da Fase 3 (ou aprovar a candidata de frontend) para iniciar o planejamento.
+Analisar a F3-T02. Nenhum evento real ou integração de produção foi criado na F3-T01.

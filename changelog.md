@@ -1,11 +1,4 @@
-# Changelog — Projeto Terceirizou Terceirização Empresarial
-
 ## 2026-09-05
 
-- [Adapta/Ethos] F3-T01 executada até o limite seguro: OAuth acessível; calendário principal `financeiro@terceirizou.com.br` confirmado como owner, primary e fuso `America/Sao_Paulo`; consulta de disponibilidade realizada sem evento criado. Task bloqueada até o champion definir duração, janela, owner operacional e regras de cancelamento/no-show.
-- [champion] Configuração operacional da F3-T01 fornecida: reunião de 30 minutos; atendimento de segunda a sexta, das 09h às 12h e das 14h às 18h; responsável Henrique Tavano; cancelamento exclui o evento e notifica financeiro@terceirizou.com.br; no-show envia e-mail ao responsável pelo agendamento para escolher novo horário.
-- [Adapta/Ethos] Contrato da F3-T01 registrado; task aguardando teste humano do champion antes da conclusão formal.
-
-## 2026-09-03
-
-- [champion] Fase 2 encerrada formalmente pelo champion (5/5 tasks, CA-2-001..005 comprovados). Fase 2 marcada como ENCERRADA; aguarda conferência formal do consultor. Fase 3 ainda sem SPEC publicada — depende do consultor (candidata frontend em 06_notas/F3-candidata-frontend-leads.md).
+- [champion] F3-T01 concluída: contrato do Google Calendar e acesso de teste aprovados. Calendário `financeiro@terceirizou.com.br` confirmado como owner/primary, fuso `America/Sao_Paulo`; reunião de 30 minutos; janela de segunda a sexta 09h–12h e 14h–18h; responsável Henrique Tavano; regras de cancelamento e no-show registradas. Nenhum evento real criado.
+- [Adapta/Ethos] F3-T01 revalidada: OAuth, calendário e contrato operacional conferidos; teste humano aprovado explicitamente pelo champion.

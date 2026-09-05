@@ -1,5 +1,24 @@
-## 2026-09-05
+# Baseline F3-T01 — Google Calendar
 
-- [Adapta/Ethos] F3-T01 executada até o limite seguro: OAuth acessível; calendário principal `financeiro@terceirizou.com.br` confirmado como owner, primary e fuso `America/Sao_Paulo`; consulta de disponibilidade realizada sem evento criado. Task bloqueada até o champion definir duração, janela, owner operacional e regras de cancelamento/no-show.
-- [champion] Configuração operacional da F3-T01 fornecida: reunião de 30 minutos; atendimento de segunda a sexta, das 09h às 12h e das 14h às 18h; responsável Henrique Tavano; cancelamento exclui o evento e notifica financeiro@terceirizou.com.br; no-show envia e-mail ao responsável pelo agendamento para escolher novo horário.
-- [Adapta/Ethos] Contrato da F3-T01 registrado; task aguardando teste humano do champion antes da conclusão formal.
+## Acesso confirmado
+
+- Conta/calendário: `financeiro@terceirizou.com.br`
+- Permissão: `owner`
+- Calendário: primary
+- Fuso: `America/Sao_Paulo`
+- OAuth: acessível e validado via consulta de calendário
+
+## Contrato aprovado
+
+- Duração: 30 minutos
+- Janela: segunda a sexta, 09h–12h e 14h–18h
+- Responsável: Henrique Tavano
+- Cancelamento: excluir do calendário e notificar `financeiro@terceirizou.com.br`
+- No-show: enviar e-mail para quem marcou a reunião, solicitando novo horário
+
+## Prova
+
+- Consulta de data/hora e metadados do calendário executadas com sucesso em 2026-09-05.
+- Disponibilidade consultada sem eventos existentes no intervalo de teste.
+- Nenhum evento real criado nesta task.
+- Teste humano aprovado pelo champion em 2026-09-05.
