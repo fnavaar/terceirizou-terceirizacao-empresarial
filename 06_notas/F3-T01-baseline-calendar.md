@@ -1,3 +1,5 @@
 ## 2026-09-05
 
 - [Adapta/Ethos] F3-T01 executada até o limite seguro: OAuth acessível; calendário principal `financeiro@terceirizou.com.br` confirmado como owner, primary e fuso `America/Sao_Paulo`; consulta de disponibilidade realizada sem evento criado. Task bloqueada até o champion definir duração, janela, owner operacional e regras de cancelamento/no-show.
+- [champion] Configuração operacional da F3-T01 fornecida: reunião de 30 minutos; atendimento de segunda a sexta, das 09h às 12h e das 14h às 18h; responsável Henrique Tavano; cancelamento exclui o evento e notifica financeiro@terceirizou.com.br; no-show envia e-mail ao responsável pelo agendamento para escolher novo horário.
+- [Adapta/Ethos] Contrato da F3-T01 registrado; task aguardando teste humano do champion antes da conclusão formal.
