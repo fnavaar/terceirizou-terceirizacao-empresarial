@@ -3,11 +3,11 @@
 - task_id: F3-T02
 - champion: Vinicius (CEO)
 - spec: 04-fase-atual/specs/spec-3-001-agendamento-google-calendar.md
-- etapa: em_correcao
-- autorizacao_implementacao: confirmada + 2026-09-05 16:13 — "Pode implementar a F3-T02."
-- teste_humano: falhou — interface atual não permite acessar o lead nem enviar a solicitação de agendamento
-- verificacao_automatica: passou — Skip v0.0.37; migration 0007 aplicada; endpoint publicado; lead sintético qualificado criado; evento não criado por ausência de token
-- aprendizado: capturado: F3-T02 depende de tela/ação de teste no frontend, não apenas do endpoint
-- ultima_acao: bloqueio confirmado por inspeção visual do CRM e tentativa de teste do champion
-- proxima_acao: corrigir acesso ao lead e ação de agendamento no frontend
-- atualizado_em: 2026-09-05T16:27:00-03:00
+- etapa: aguardando_teste_humano
+- autorizacao_implementacao: confirmada + 2026-09-05 — "pode seguir o plano"
+- teste_humano: pendente — frontend corrigido; aguardando teste do champion
+- verificacao_automatica: passou — Skip v0.0.39 (setup, staticAnalysis, build, integrations, test)
+- aprendizado: capturado: teste de integração precisa validar fuso explícito America/Sao_Paulo e Authorization no frontend
+- ultima_acao: frontend corrigido para detalhe, qualificação, ação de agendamento, fuso -03:00 e token autenticado
+- proxima_acao: executar teste humano com o lead F3T02-SINTETICO-QUALIFICADO
+- atualizado_em: 2026-09-05T16:35:00-03:00

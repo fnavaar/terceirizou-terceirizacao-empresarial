@@ -6,21 +6,23 @@
 
 - **Fase 1:** concluída (10/10).
 - **Fase 2:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 em correção; F3-T03 bloqueada.
-- **Skip:** v0.0.37, hash `a8d7a8d`.
+- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 corrigida e aguardando teste humano; F3-T03 bloqueada.
+- **Skip:** v0.0.39, hash `54bb544`.
 - **Calendário:** `financeiro@terceirizou.com.br`, owner/primary, `America/Sao_Paulo`.
 
-## F3-T02 — Bloqueio confirmado
+## F3-T02 — Correção aplicada
 
-A implementação técnica da API passou no QA, mas o teste humano falhou porque a interface atual:
+- Interface permite abrir o lead.
+- Qualificação e score são exibidos.
+- Ação de agendamento aparece somente para lead qualificado.
+- Horário é enviado explicitamente no fuso de São Paulo.
+- Token da sessão é enviado ao endpoint.
+- Sem token Google no cofre, o esperado é retorno seguro `503`, sem criação de evento.
 
-- lista leads sem abrir detalhe;
-- não exibe estado de qualificação, score ou próxima ação;
-- não oferece ação para solicitar agendamento;
-- impede o champion de testar o fluxo real.
+## QA
 
-O lead sintético `F3T02-SINTETICO-QUALIFICADO` foi criado no CRM, mas não é acessível pelo frontend atual.
+- Skip v0.0.39: setup, static analysis, build, integrations e test — todos passaram.
 
 ## Próximo passo
 
-Corrigir o frontend para permitir acessar o lead sintético e enviar a solicitação de agendamento. F3-T02 não está concluída e F3-T03 não será iniciada antes do teste humano aprovado.
+Teste humano do lead `F3T02-SINTETICO-QUALIFICADO`. F3-T03 não foi iniciada.
