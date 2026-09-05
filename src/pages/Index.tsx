@@ -1,4 +1,4 @@
-/* CRM Oficial — Página inicial: lista de leads do PocketBase */
+/* CRM Oficial — Página inicial: lista, detalhe e agendamento de leads do PocketBase */
 import { useEffect, useState } from 'react'
 import pb from '@/lib/pocketbase/client'
 
@@ -13,6 +13,11 @@ interface Lead {
   campanha: string
   estagio: string
   responsavel: string
+  estado_qualificacao: string
+  score: number | null
+  motivo_decisao: string
+  proxima_acao: string
+  estado_agendamento: string
   created: string
   updated: string
 }
@@ -35,17 +40,25 @@ const Index = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [user, setUser] = useState<any>(null)
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
+  const [scheduleStart, setScheduleStart] = useState('')
+  const [scheduleMessage, setScheduleMessage] = useState('')
+  const [scheduleLoading, setScheduleLoading] = useState(false)
 
   useEffect(() => {
     const currentUser = pb.authStore.model
-    if (currentUser) setUser(currentUser)
+    if (currentUser) {
+      setUser(currentUser)
+    }
     fetchLeads()
   }, [])
 
   const fetchLeads = async () => {
     try {
       setLoading(true)
-      const records = await pb.collection('leads').getFullList({ sort: '-created' })
+      const records = await pb.collection('leads').getFullList({
+        sort: '-created',
+      })
       setLeads(records as unknown as Lead[])
       setError(null)
     } catch (err: any) {
@@ -57,7 +70,9 @@ const Index = () => {
 
   const handleLogin = async () => {
     try {
-      await pb.collection('users').authWithPassword('vinicius@terceirizou.com.br', 'Terceirizou@2026')
+      await pb
+        .collection('users')
+        .authWithPassword('vinicius@terceirizou.com.br', 'Terceirizou@2026')
       setUser(pb.authStore.model)
       fetchLeads()
     } catch (err: any) {
@@ -71,6 +86,49 @@ const Index = () => {
     setLeads([])
   }
 
+  const handleSchedule = async () => {
+    if (!selectedLead || !scheduleStart) {
+      setScheduleMessage('Selecione um horário para continuar.')
+      return
+    }
+    const [data, hora] = scheduleStart.split('T')
+    const [h, m] = hora.split(':').map(Number)
+    const inicio = `${data}T${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00-03:00`
+    const fimDate = new Date(Date.parse(inicio) + 30 * 60 * 1000)
+    const fim = `${fimDate.toISOString().slice(0, 19)}-03:00`
+    setScheduleLoading(true)
+    setScheduleMessage('')
+    try {
+      const response = await fetch(pb.baseUrl + '/backend/v1/agendar-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: pb.authStore.token,
+        },
+        body: JSON.stringify({
+          lead_id: selectedLead.id,
+          inicio,
+          fim,
+          email: selectedLead.email,
+        }),
+      })
+      const result = await response.json()
+      if (response.ok) {
+        setScheduleMessage('Solicitação enviada: ' + (result.status || 'ok'))
+        fetchLeads()
+      } else {
+        setScheduleMessage(
+          'Solicitação não concluída: ' +
+            (result.motivo || result.error || 'verifique a configuração'),
+        )
+      }
+    } catch (err: any) {
+      setScheduleMessage('Erro de conexão: ' + err.message)
+    } finally {
+      setScheduleLoading(false)
+    }
+  }
+
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -79,10 +137,15 @@ const Index = () => {
             <h1 className="text-3xl font-bold text-gray-900">CRM Oficial</h1>
             <p className="mt-2 text-gray-600">Terceirizou — BPO Financeiro</p>
           </div>
-          <button onClick={handleLogin} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-            Entrar como Administrador
-          </button>
-          {error && <div className="text-red-600 text-sm text-center">{error}</div>}
+          <div className="mt-8 space-y-4">
+            <button
+              onClick={handleLogin}
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Entrar como Administrador
+            </button>
+            {error && <div className="text-red-600 text-sm text-center">{error}</div>}
+          </div>
         </div>
       </div>
     )
@@ -91,18 +154,21 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">CRM Oficial</h1>
             <p className="text-sm text-gray-500">Terceirizou — BPO Financeiro</p>
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-600">{user.name || user.email}</span>
-            <button onClick={handleLogout} className="text-sm text-red-600 hover:text-red-800">Sair</button>
+            <button onClick={handleLogout} className="text-sm text-red-600 hover:text-red-800">
+              Sair
+            </button>
           </div>
         </div>
       </header>
-      <main className="max-w-7xl mx-auto px-4 py-8">
+
+      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm font-medium text-gray-500">Total de Leads</div>
@@ -110,22 +176,32 @@ const Index = () => {
           </div>
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm font-medium text-gray-500">Capturados</div>
-            <div className="text-2xl font-bold text-blue-600">{leads.filter(l => l.estagio === 'capturado').length}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {leads.filter((l) => l.estagio === 'capturado').length}
+            </div>
           </div>
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm font-medium text-gray-500">Aguardando Dados</div>
-            <div className="text-2xl font-bold text-yellow-600">{leads.filter(l => l.estagio === 'aguardando_dados').length}</div>
+            <div className="text-2xl font-bold text-yellow-600">
+              {leads.filter((l) => l.estagio === 'aguardando_dados').length}
+            </div>
           </div>
           <div className="bg-white rounded-lg shadow p-4">
             <div className="text-sm font-medium text-gray-500">Encerrados</div>
-            <div className="text-2xl font-bold text-red-600">{leads.filter(l => l.estagio === 'encerrado_entrada_invalida').length}</div>
+            <div className="text-2xl font-bold text-red-600">
+              {leads.filter((l) => l.estagio === 'encerrado_entrada_invalida').length}
+            </div>
           </div>
         </div>
+
         <div className="bg-white shadow rounded-lg">
-          <div className="px-4 py-5 border-b border-gray-200 flex justify-between items-center">
+          <div className="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-lg font-medium text-gray-900">Leads</h2>
-            <button onClick={fetchLeads} className="text-sm text-indigo-600 hover:text-indigo-800">Atualizar</button>
+            <button onClick={fetchLeads} className="text-sm text-indigo-600 hover:text-indigo-800">
+              Atualizar
+            </button>
           </div>
+
           {loading ? (
             <div className="p-8 text-center text-gray-500">Carregando...</div>
           ) : error ? (
@@ -137,13 +213,15 @@ const Index = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nome</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Telefone</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Origem</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estágio</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Responsável</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Criado em</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origem</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estágio</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qualificação</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Criado em</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ação</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -152,10 +230,21 @@ const Index = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{lead.nome}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lead.email || '—'}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lead.telefone || '—'}</td>
-                      <td className="px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${origemColors[lead.origem] || 'bg-gray-100 text-gray-800'}`}>{lead.origem}</span></td>
-                      <td className="px-6 py-4 whitespace-nowrap"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${estagioColors[lead.estagio] || 'bg-gray-100 text-gray-800'}`}>{lead.estagio}</span></td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${origemColors[lead.origem] || 'bg-gray-100 text-gray-800'}`}>{lead.origem}</span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${estagioColors[lead.estagio] || 'bg-gray-100 text-gray-800'}`}>{lead.estagio}</span>
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lead.responsavel}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <span className="font-medium text-gray-900">{lead.estado_qualificacao || '—'}</span>
+                        {lead.score !== null && <span className="ml-2 text-gray-500">({lead.score})</span>}
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(lead.created).toLocaleDateString('pt-BR')}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <button onClick={() => { setSelectedLead(lead); setScheduleMessage(''); setScheduleStart('') }} className="text-indigo-600 hover:text-indigo-800">Abrir</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -164,6 +253,41 @@ const Index = () => {
           )}
         </div>
       </main>
+
+      {selectedLead && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-lg w-full p-6">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900">{selectedLead.nome}</h3>
+                <p className="text-sm text-gray-500">{selectedLead.lead_id}</p>
+              </div>
+              <button onClick={() => setSelectedLead(null)} className="text-gray-500 hover:text-gray-900">Fechar</button>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+              <p><strong>Email:</strong> {selectedLead.email || '—'}</p>
+              <p><strong>Telefone:</strong> {selectedLead.telefone || '—'}</p>
+              <p><strong>Qualificação:</strong> {selectedLead.estado_qualificacao || '—'}</p>
+              <p><strong>Score:</strong> {selectedLead.score ?? '—'}</p>
+              <p className="col-span-2"><strong>Motivo:</strong> {selectedLead.motivo_decisao || '—'}</p>
+              <p className="col-span-2"><strong>Próxima ação:</strong> {selectedLead.proxima_acao || '—'}</p>
+            </div>
+            {selectedLead.estado_qualificacao === 'qualificado' ? (
+              <div className="mt-6 border-t pt-4">
+                <h4 className="font-medium text-gray-900">Solicitar agendamento</h4>
+                <p className="text-sm text-gray-500 mt-1">Escolha o início da reunião de 30 minutos.</p>
+                <input type="datetime-local" value={scheduleStart} onChange={(event) => setScheduleStart(event.target.value)} className="mt-3 block w-full border border-gray-300 rounded-md p-2" />
+                <button onClick={handleSchedule} disabled={scheduleLoading} className="mt-3 w-full px-4 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-md disabled:opacity-50">
+                  {scheduleLoading ? 'Enviando...' : 'Solicitar agendamento'}
+                </button>
+                {scheduleMessage && <p className="mt-3 text-sm text-gray-700">{scheduleMessage}</p>}
+              </div>
+            ) : (
+              <p className="mt-6 text-sm text-gray-500">Este lead não está qualificado para agendamento.</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
