@@ -1,3 +1,3 @@
 ## 2026-09-05
 
-- [Adapta/Ethos] Bloqueio confirmado na produção da F3-T02: Skip registra v0.0.40/c199a88 publicado, mas HTML público continua apontando para bundle antigo index-C2yGw00y.js; preview aponta para bundle novo. Não pedir teste ao champion até a promoção do artefato ser corrigida.
+- [Adapta/Ethos] Promoção do bundle F3-T02 corrigida: produção estava servindo HTML antigo apesar do publishedRef. Após nova promoção, o domínio público foi conferido autenticado e passou a exibir Qualificação, lead sintético e Abrir. CRM apto para teste humano.
