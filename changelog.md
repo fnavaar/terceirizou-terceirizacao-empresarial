@@ -1,3 +1,3 @@
 ## 2026-09-05
 
-- [Adapta/Ethos] F3-T02 publicada na produção (ref `54bb544`): a versão antiga estava no ar e impedia o teste; após publicar, a tela passou a exibir Qualificação e o botão Abrir. CRM apto para teste humano.
+- [Adapta/Ethos] Bloqueio confirmado na produção da F3-T02: Skip registra v0.0.40/c199a88 publicado, mas HTML público continua apontando para bundle antigo index-C2yGw00y.js; preview aponta para bundle novo. Não pedir teste ao champion até a promoção do artefato ser corrigida.

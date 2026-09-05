@@ -6,29 +6,17 @@
 
 - **Fase 1:** concluída (10/10).
 - **Fase 2:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 corrigida e publicada; aguardando teste humano; F3-T03 bloqueada.
-- **Skip:** v0.0.39, hash `54bb544`.
-- **Produção:** publicada em 2026-09-05 19:35 (ref `54bb544`).
-- **Calendário:** `financeiro@terceirizou.com.br`, owner/primary, `America/Sao_Paulo`.
+- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 implementada, mas bloqueada na publicação pública; F3-T03 bloqueada.
+- **Skip working tree/build:** v0.0.40, hash `c199a88`, QA completo aprovado.
+- **Preview:** serve o bundle novo `index-9SQRI9c-.js`, com Qualificação, Abrir e Solicitar agendamento.
+- **Produção:** HTML continua apontando para `index-C2yGw00y.js`, bundle antigo sem essas funções.
 
-## F3-T02 — Pronto para teste
+## Bloqueio de infraestrutura
 
-A versão corrigida foi publicada na produção. A tela agora:
+A produção registra `publishedRef: c199a88` e timestamp atualizado, mas o domínio público continua servindo o artefato antigo. A divergência foi confirmada por `curl` diretamente no HTML público, inclusive com query strings de cache-busting e após nova publicação.
 
-- exibe a coluna **Qualificação**;
-- oferece o botão **Abrir** para cada lead;
-- abre o detalhe com estado, score, motivo e próxima ação;
-- mostra a ação **Solicitar agendamento** somente para lead qualificado;
-- envia o horário no fuso `America/Sao_Paulo`;
-- envia o token da sessão ao endpoint.
-
-O lead sintético `F3T02-SINTETICO-QUALIFICADO` está visível na primeira linha, com `qualificado (5)`.
-
-## QA
-
-- Skip v0.0.39: setup, static analysis, build, integrations e test — todos passaram.
-- Produção publicada e confirmada no domínio público.
+Conclusão: o CRM **não está apto para teste em produção**. Não orientar o champion a testar até a URL pública entregar o mesmo bundle do preview.
 
 ## Próximo passo
 
-Teste humano do lead `F3T02-SINTETICO-QUALIFICADO`. F3-T03 não foi iniciada.
+Corrigir a promoção/entrega do artefato no Skip ou abrir suporte da plataforma. Critério de desbloqueio: `https://crm-oficial-65bb8.goskip.app` deve apontar para bundle contendo `Qualificação`, `Abrir` e `agendar-lead`.
