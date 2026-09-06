@@ -3,11 +3,11 @@
 - task_id: F3-T03
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-3-001-agendamento-google-calendar.md
-- etapa: aguardando_autorizacao
-- autorizacao_implementacao: ausente — relatório de análise da F3-T03 apresentado em 2026-09-06; aguarda resposta do champion sobre o plano
-- teste_humano: pendente
-- verificacao_automatica: pendente — baseline lido (hooks agendar_lead/fila_revisao/revisar_lead; migrations 0001/0004/0007; Index.tsx)
+- etapa: aguardando_teste_humano
+- autorizacao_implementacao: confirmada + 2026-09-06T11:09 — "pode implementar o plano"
+- teste_humano: pendente — roteiro apresentado; aguarda confirmacao do champion na interface
+- verificacao_automatica: passou — CA-3-003 (cancelar/no_show com evento real e idempotencia) + CA-3-004 (falha segura 502 + error_log, sem token); QA Skip v0.0.49
 - aprendizado: pendente
-- ultima_acao: análise profunda da F3-T03 (leu SPEC-3-001, hook atual, padrões de histórico/fila, frontend)
-- proxima_acao: aguardar autorização do champion para implementar
-- atualizado_em: 2026-09-06T11:06:00-03:00
+- ultima_acao: implementou F3-T03 (migration 0008 agendamento_situacao; hook agendar_borda cancelar/no_show; frontend botoes; renovacao de token e tratamento 410); publicou v0.0.49
+- proxima_acao: champion testar na interface (cancelar + no_show) e confirmar
+- atualizado_em: 2026-09-06T11:21:00-03:00
