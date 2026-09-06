@@ -1,0 +1,27 @@
+{
+  "versao": "1.0",
+  "aprovado_por": "Vinicius (champion)",
+  "aprovado_em": "2026-09-06",
+  "status": "aprovado_parcial",
+  "provedor": "resend",
+  "sequencia": {
+    "quantidade": 3,
+    "intervalo_dias": 1,
+    "fuso": "America/Sao_Paulo"
+  },
+  "remetente": "financeiro@terceirizou.com.br",
+  "publico_elegivel": "qualificado",
+  "modelos": {
+    "status": "pendente",
+    "origem": "champion fornece os textos",
+    "versao": ""
+  },
+  "base_legal_lgpd": "interesse_legitimo_lead_interagiu_formulario_anuncio",
+  "descadastro": "link de descadastro em todo envio",
+  "responsavel_excecoes": "Henrique Tavano",
+  "limites": {
+    "max_tentativas": 3,
+    "retry_transitorio": "somente dentro da regra do champion"
+  },
+  "paradas": ["resposta", "agendamento", "cancelamento", "no_show", "descadastro", "bounce_permanente", "limite_cadencia"]
+}
