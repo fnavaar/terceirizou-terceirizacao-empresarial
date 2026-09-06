@@ -3,11 +3,11 @@
 - task_id: F3-T03
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-3-001-agendamento-google-calendar.md
-- etapa: aguardando_teste_humano
+- etapa: concluida
 - autorizacao_implementacao: confirmada + 2026-09-06T11:09 — "pode implementar o plano"
-- teste_humano: pendente — roteiro apresentado; aguarda confirmacao do champion na interface
-- verificacao_automatica: passou — CA-3-003 (cancelar/no_show com evento real e idempotencia) + CA-3-004 (falha segura 502 + error_log, sem token); QA Skip v0.0.49
-- aprendizado: pendente
-- ultima_acao: implementou F3-T03 (migration 0008 agendamento_situacao; hook agendar_borda cancelar/no_show; frontend botoes; renovacao de token e tratamento 410); publicou v0.0.49
-- proxima_acao: champion testar na interface (cancelar + no_show) e confirmar
-- atualizado_em: 2026-09-06T11:21:00-03:00
+- teste_humano: aprovado + 2026-09-06T11:28 — "testado" (cancelar+no-show 200; evento real e historico no CRM)
+- verificacao_automatica: passou — CA-3-003/004 (cancelamento, no_show, idempotencia, falha segura 502+error_log); QA Skip v0.0.49
+- aprendizado: capturado: 06_notas/aprendizado-continuo/AP-2026-09-06-1135-oauth-refresh-410-select.md
+- ultima_acao: concluiu F3-T03 com teste humano aprovado; atualizou fase-3, 00-Tasks_Gerais-F3, STATUS, F3-T03-evidencia, controle, estado
+- proxima_acao: F3-T04 (cadência/modelos do follow-up + Resend sandbox) é a próxima elegível — aguarda decisões do champion (cadência, modelos, remetente, base legal)
+- atualizado_em: 2026-09-06T11:37:00-03:00

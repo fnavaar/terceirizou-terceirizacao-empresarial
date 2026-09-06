@@ -6,18 +6,19 @@
 
 - **Fase 1:** concluída (10/10).
 - **Fase 2:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01 concluída; F3-T02 concluída com teste humano aprovado pelo champion; F3-T03 PENDENTE (próxima elegível — cancelamento/no-show/falha de agenda); F3-T04 PENDENTE (config Resend).
-- **Skip:** v0.0.44, hash `cce2a45` (publicado).
+- **Fase 3:** em andamento — F3-T01, F3-T02 e F3-T03 concluídas (teste humano aprovado); F3-T04 PENDENTE (próxima elegível — config Resend); F3-T05/F3-T06/F3-T07 bloqueadas.
+- **Skip:** v0.0.49, hash `b5f5272` (publicado).
 
-## F3-T02 — Autoagendamento idempotente (CONCLUÍDA 2026-09-06)
+## F3-T03 — Borda de agenda (CONCLUÍDA 2026-09-06)
 
-Teste humano aprovado pelo champion em 2026-09-06 ("deu certo"): lead sintético qualificado agendado para 07/09 11:00–11:30 (America/Sao_Paulo), evento `rae53ldt5702595ashoj47ka80` criado no calendário da financeiro@terceirizou.com.br, CRM com `estado_agendamento=agendado`, owner Henrique Tavano, próxima ação `aguardar_reuniao`, chave de idempotência `4hztghz2g3erjzv:reuniao:2026-09-07T11:00:00-03:00`. Repetição do pedido → `already_scheduled` (CA-3-002).
+Cancelamento, no-show e falha de agenda provados com evento real (lead sintético). Teste humano aprovado pelo champion: cancelou, tentou reagendar (idempotente) e marcou no-show — tudo 200, histórico assinado no CRM.
 
-Bugs corrigidos no caminho (todos com causa raiz nos logs):
-- token de sessão do navegador invalidava após deploy (chave JWT muda) → 401 mascarado como "verifique a configuração"; frontend agora refaz login em 401 (v0.0.43).
-- cálculo do fim do agendamento usava `toISOString()` (UTC) rotulado como -03:00 → diferença real de 3h30 → "janela deve ter exatamente 30 minutos"; corrigido cálculo aritmético no fuso (v0.0.44).
-- rota custom `/backend/v1/*` não é servida no domínio público (405) — frontend usa `pb.baseUrl` (backend interno).
+- `POST /backend/v1/agendar-borda` com ações `cancelar` e `no_show`; campo `agendamento_situacao` (ativo/cancelado/no_show).
+- Cancelar → DELETE no Google Calendar (com renovação de token via refresh + tratamento 410 como evento já removido), `situacao=cancelado`, `proxima_acao=reagendar`.
+- No-show → evento mantido, `situacao=no_show`, `proxima_acao=contato_humano`.
+- Falha OAuth/API → 502 sem falso sucesso + registro em `error_log` (fila humana), sem token exposto.
+- Histórico sempre append (nunca apaga).
 
 ## Próximo passo
 
-F3-T03 (provar cancelamento, no-show e falha de agenda) é a próxima task elegível — depende apenas de novo pedido do champion para abrir a análise.
+F3-T04 (champion registra cadência/modelos do follow-up e valida Resend sandbox) é a próxima elegível — depende de decisões do champion (cadência, modelos, remetente, base legal).

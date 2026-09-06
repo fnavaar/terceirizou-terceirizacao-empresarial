@@ -9,3 +9,4 @@ na resposta comum ao cliente.
 - 2026-09-02T17:20:00-03:00 · F2-T04 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-02-1720-json-bytes-historico.md
 - 2026-09-03T11:14:00-03:00 · F2-T05 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-03-1114-negacao-rls-404.md
 - 2026-09-06T10:50:00-03:00 · F3-T02 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-06-1050-fuso-datetime-jwt-skip.md
+- 2026-09-06T11:35:00-03:00 · F3-T03 · capturado: 06_notas/aprendizado-continuo/AP-2026-09-06-1135-oauth-refresh-410-select.md
