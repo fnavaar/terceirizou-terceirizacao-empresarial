@@ -6,8 +6,8 @@
 - etapa: implementando
 - autorizacao_implementacao: confirmada + 2026-09-06T11:45 — formulário enviado "pode registrar e validar sandbox"
 - teste_humano: pendente
-- verificacao_automatica: pendente — decisões registradas em config/cadencia_followup_v1.json; aguarda chave Resend + textos do champion
+- verificacao_automatica: parcial — decisões registradas (config/cadencia_followup_v1.json); chave RESEND_API_KEY salva no cofre do Skip (não versionada); API respondeu 401 "restricted to only send emails" (chave válida, permissão de envio, sem acesso a listar domínios)
 - aprendizado: pendente
-- ultima_acao: registrou decisões da cadência (3 e-mails, 1 dia, remetente financeiro@terceirizou.com.br, público qualificado, base legal interesse legítimo, responsável Henrique Tavano) em config/cadencia_followup_v1.json
-- proxima_acao: aguardar do champion a chave da API Resend (para secret) e os 3 textos dos e-mails
-- atualizado_em: 2026-09-06T11:47:00-03:00
+- ultima_acao: salvou RESEND_API_KEY no cofre do Skip e validou a chave via API (permissão de envio confirmada); aguarda textos dos e-mails e confirmação do domínio verificado
+- proxima_acao: aguardar do champion os 3 textos dos e-mails e a confirmação de que o domínio terceirizou.com.br está verificado no Resend
+- atualizado_em: 2026-09-06T11:50:00-03:00
