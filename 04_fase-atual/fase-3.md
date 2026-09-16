@@ -8,6 +8,8 @@ Cada linha é uma tarefa da Jornada de Execução. Marque `[x]` para concluir; a
 - [x] Registrar cadência/modelos do champion e validar Resend sandbox <!-- id:f3-t04-resend-config -->
 - [x] Implementar sequência de e-mail idempotente <!-- id:f3-t05-resend-sequencia -->
 - [x] Implementar paradas, eventos e exceções do follow-up <!-- id:f3-t06-resend-paradas -->
-- [ ] Provar jornada F3 em massa sintética e obter aceite <!-- id:f3-t07-prova-final -->
+- [x] Provar jornada F3 em massa sintética e obter aceite <!-- id:f3-t07-prova-final -->
 
 **Regra:** executar uma task por vez e aguardar aceite humano antes da próxima. F3-T01 e F3-T04 dependem de configuração/aprovação do champion; não iniciar integração ou disparo sem elas.
+
+**✅ FASE 3 ENCERRADA pelo champion (Vinicius) em 2026-09-16 — 7/7 tasks, aceite final registrado no chat ("aceito a fase", 18:56).**

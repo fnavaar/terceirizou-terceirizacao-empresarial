@@ -1,0 +1,6 @@
+# Aprendizado contínuo — F3-T07
+
+- **Sinal reutilizável (Resend allowlist):** contas Resend sem meio de pagamento só enviam para o próprio e-mail do dono da conta — destinatário externo retorna 422 síncrono "use our testing email address". Testar envio para destinatário externo sem cartão configura a conta não é falha do código: é limitação do provedor. Para produção com leads reais: configurar pagamento na conta Resend.
+- **Sinal reutilizável (bounce assíncrono):** domínios reservados (.invalid/.example) NÃO são rejeitados de forma síncrona pela API do Resend — o envio é aceito (201) e o bounce chega depois via webhook/evento. Prova de falha de envio síncrona precisa de destinatário rejeitado na validação (allowlist), não de domínio falso.
+- **Sinal reutilizável (secrets no runtime Skip):** troca de secret via set_secret não propaga imediatamente ao runtime do PocketBase — o valor antigo persiste até redeploy. Para provar falha de chave inválida e restaurar, prever redeploy (apply_changes com no-op) e validar a chave direto na API do provedor antes de culpar o cache.
+- **Sinal reutilizável (diagnóstico de 502):** antes de tratar 502 persistente como bug, reproduzir a chamada do hook fora do Skip (curl direto na API do provedor com o mesmo payload) — o 422 do Resend com destinatário fora da allowlist explicava o 502 que parecia cache de secret.
