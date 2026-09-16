@@ -32,7 +32,7 @@ migrate(
   },
   (app) => {
     const collection = app.findCollectionByNameOrId('leads')
-    for (const nome de [
+    for (const nome of [
       'followup_estado',
       'followup_idempotency_key',
       'followup_ultimo_envio_id',
