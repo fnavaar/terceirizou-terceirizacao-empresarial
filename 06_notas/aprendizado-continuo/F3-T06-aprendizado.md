@@ -1,0 +1,5 @@
+# Aprendizado contínuo — F3-T06
+
+- **Sinal reutilizável (select sem valor):** criar registro com valor de campo select fora da lista de valores permitidos falha na validação e o catch vazio engole o erro — a fila humana fica vazia sem ninguém notar. Antes de gravar em select, conferir a lista de valores na collection (get_collection_details) e, quando faltar valor de negócio, criar migration aditiva (0011: categoria `bounce`). Detectado porque a prova verificou o efeito (error_log com 0 registros), não só o 200 da rota.
+- **Sinal reutilizável (prova de efeito, não de resposta):** uma rota que retorna 200 não prova que o efeito lateral aconteceu — sempre verificar o registro criado (error_log, campos do lead, histórico). O catch vazio + validação de select silenciosa é o par que gera "sucesso falso".
+- **Sem sinal reutilizável:** paradas (resposta/agendamento/no_show/descadastro) já tinham padrão claro em agendar_borda.js — nada novo a capturar na implementação delas.

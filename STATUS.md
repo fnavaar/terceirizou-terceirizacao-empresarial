@@ -6,18 +6,19 @@
 
 - **Fase 1:** concluída (10/10).
 - **Fase 2:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01 a F3-T05 concluídas (5/7); **F3-T06 é a próxima elegível** (paradas, eventos e exceções do follow-up); F3-T07 bloqueada.
-- **Skip:** v0.0.52, hash `d270f04` (QA 5/5).
+- **Fase 3:** em andamento — F3-T01 a F3-T06 concluídas (6/7); **F3-T07 é a última** (prova da jornada F3 em massa sintética + aceite); F3-T07 bloqueada até novo pedido do champion.
+- **Skip:** v0.0.54, hash `f9cdb6a` (QA 5/5).
 
-## F3-T05 — Sequência de e-mail idempotente (CONCLUÍDA 2026-09-16)
+## F3-T06 — Paradas, eventos e exceções do follow-up (CONCLUÍDA 2026-09-16)
 
-Disparo idempotente do follow-up via Resend, com os modelos aprovados na F3-T04. Teste humano aprovado pelo champion.
+Paradas da cadência provadas com o lead sintético. Teste humano aprovado pelo champion: parada `agendamento` ("lead pediu reunião") gravada, disparo bloqueado com 409, histórico preservado.
 
-- **Migration 0009:** campos aditivos em `leads` — `followup_estado`, `followup_idempotency_key`, `followup_ultimo_envio_id`, `followup_tentativa`, `followup_proxima_acao`, `followup_historico` (json append-only), com rollback.
-- **Hook `followup_lead.js`:** `POST /backend/v1/followup-lead` — valida config aprovada (RN-3-101), qualificação + e-mail válido + base legal (RN-3-102); envia somente os modelos aprovados da cadência v1.1; idempotência por `lead_id + cadencia + tentativa` (repetir sem body repete a tentativa atual — avançar é papel do scheduler da F3-T06 com tentativa explícita); falha Resend → 502 sem falso sucesso + `error_log`, sem chave exposta (CA-3-104); histórico com destinatário mascarado.
-- **Provas:** RED-1 (409 lead_nao_qualificado), RED-2 (409 email_invalido_ou_ausente), GREEN t1 (201 sent), repetição (200 already_sent, mesmo resend_email_id), 3ª chamada (already_sent), scheduler t2 explícita (201 id novo; repetição already_sent), histórico append-only com 2 entradas.
-- **Correções durante a task:** (1) constantes no escopo de módulo não são visíveis ao handler no runtime Skip — movidas para dentro do callback (v0.0.51); (2) default que auto-avançava a tentativa quebrava a idempotência — corrigido para repetir a atual (v0.0.52).
+- **Migration 0010:** campo `followup_parada` em `leads` (resposta/agendamento/cancelamento/no_show/descadastro/bounce_permanente), com rollback.
+- **Hook `followup_parada.js`:** `POST /backend/v1/followup-parada` — registra parada (idempotente, `already_stopped`), histórico append-only, `limpar=true` para rollback operacional com registro no histórico; `bounce_permanente` cria registro em `error_log` (fila humana, dono Henrique Tavano).
+- **Migration 0011:** categoria `bounce` adicionada ao select `categoria` do `error_log` — descoberta na prova (create falhava em silêncio com catch vazio; corrigido e reprovado).
+- **Gate no disparo (`followup_lead.js`):** com parada ativa, `followup-lead` devolve 409 `followup_parado:<motivo>`, zero chamada Resend (CA-3-103).
+- **Provas:** parada inválida 400; resposta 200 parado; repetição already_stopped; disparo com parada 409 (default e tentativa explícita); limpar → cadência retoma (already_sent intacto); bounce → parado + error_log categoria bounce; histórico append-only 9 entradas sem nada apagado.
 
 ## Próximo passo
 
-F3-T06 (paradas, eventos e exceções do follow-up) é a próxima elegível — exige novo pedido do champion.
+F3-T07 (provar a jornada F3 em massa sintética e obter aceite) é a última da fase — exige novo pedido do champion.
