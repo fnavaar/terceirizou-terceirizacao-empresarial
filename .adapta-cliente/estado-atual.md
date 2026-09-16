@@ -3,11 +3,11 @@
 - task_id: F3-T05
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-3-002-follow-up-email-resend.md
-- etapa: aguardando_teste_humano
-- autorizacao_implementacao: confirmada + 2026-09-16T18:02 — "Aplicar a correção" (correção de idempotência aprovada pelo champion)
-- teste_humano: pendente
-- verificacao_automatica: passou — RED-1 (409 lead_nao_qualificado), RED-2 (409 email_invalido_ou_ausente), GREEN t1 (201 sent, resend id 01a0ac08-c7c2), repetição (200 already_sent, mesmo id), 3a chamada (200 already_sent), scheduler t2 explícita (201 id novo 01a0ac09-6c00), repetição t2 (200 already_sent), histórico append-only com 2 entradas (destinatário mascarado); v0.0.52 QA 5/5
-- aprendizado: pendente
-- ultima_acao: fix de idempotência aplicado e reprovado — provas RED/GREEN/scheduler/idempotência todas GREEN no Skip v0.0.52 (hash d270f04)
-- proxima_acao: apresentar roteiro de teste humano e aguardar confirmação do champion
-- atualizado_em: 2026-09-16T18:55:00-03:00
+- etapa: concluida
+- autorizacao_implementacao: confirmada + 2026-09-16T16:34 "pode implementar" e 18:02 "Aplicar a correção"
+- teste_humano: APROVADO + 2026-09-16T18:15 — "testei e funcionou" (disparo repetido devolveu already_sent sem duplicar e-mail)
+- verificacao_automatica: passou — RED-1/RED-2 409 bloqueado sem chamada Resend; GREEN t1 201 sent; repetição 200 already_sent mesmo id; scheduler t2 explícita 201 com repetição already_sent; histórico append-only; v0.0.52 QA 5/5
+- aprendizado: capturado:06_notas/aprendizado-continuo/F3-T05-aprendizado.md
+- ultima_acao: F3-T05 concluída e registrada (fase-3.md 5/7, STATUS.md, changelog)
+- proxima_acao: aguardar pedido do champion para iniciar F3-T06 (paradas, eventos e exceções do follow-up)
+- atualizado_em: 2026-09-16T18:20:00-03:00
