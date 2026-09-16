@@ -1,24 +1,22 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-09-06 · **Por:** Adapta/ETHOS
+> **Atualizado em:** 2026-09-16 · **Por:** Adapta/ETHOS
 
 ## Onde estamos
 
 - **Fase 1:** concluída (10/10).
 - **Fase 2:** concluída (5/5).
-- **Fase 3:** em andamento — F3-T01, F3-T02 e F3-T03 concluídas (teste humano aprovado); F3-T04 PENDENTE (próxima elegível — config Resend); F3-T05/F3-T06/F3-T07 bloqueadas.
+- **Fase 3:** em andamento — F3-T01 a F3-T04 concluídas (4/7); **F3-T05 é a próxima elegível** (implementar sequência de e-mail idempotente); F3-T06/F3-T07 bloqueadas.
 - **Skip:** v0.0.49, hash `b5f5272` (publicado).
 
-## F3-T03 — Borda de agenda (CONCLUÍDA 2026-09-06)
+## F3-T04 — Cadência/modelos do follow-up + Resend sandbox (CONCLUÍDA 2026-09-16)
 
-Cancelamento, no-show e falha de agenda provados com evento real (lead sintético). Teste humano aprovado pelo champion: cancelou, tentou reagendar (idempotente) e marcou no-show — tudo 200, histórico assinado no CRM.
+Configuração do champion registrada e sandbox do Resend provado nos dois caminhos. Teste humano aprovado.
 
-- `POST /backend/v1/agendar-borda` com ações `cancelar` e `no_show`; campo `agendamento_situacao` (ativo/cancelado/no_show).
-- Cancelar → DELETE no Google Calendar (com renovação de token via refresh + tratamento 410 como evento já removido), `situacao=cancelado`, `proxima_acao=reagendar`.
-- No-show → evento mantido, `situacao=no_show`, `proxima_acao=contato_humano`.
-- Falha OAuth/API → 502 sem falso sucesso + registro em `error_log` (fila humana), sem token exposto.
-- Histórico sempre append (nunca apaga).
+- **Config:** `config/cadencia_followup_v1.json` v1.1, status `aprovado` — 3 e-mails (D+0/D+1/D+2, intervalo 1 dia, fuso America/Sao_Paulo), remetente `financeiro@terceirizou.com.br`, público somente leads qualificados, base legal LGPD interesse legítimo, responsável por exceções Henrique Tavano, paradas definidas (resposta, agendamento, cancelamento, no_show, descadastro, bounce_permanente, limite_cadencia).
+- **Modelos:** 3 textos aprovados como versão final pelo champion em 2026-09-16 (rascunhos gerados no estilo do champion, variáveis `{{nome}}` e `{{link_agenda}}`).
+- **Sandbox Resend:** chave `RESEND_API_KEY` salva somente no cofre de secrets do Skip. Prova RED: envio antes da verificação DNS → HTTP 403 "domain is not verified", sem falso sucesso (CA-3-104). Prova GREEN: após o champion verificar `terceirizou.com.br` no Resend, envio de teste → HTTP 200 (ID `1757d405-938c-4fd5-a97e-f8c7c46a6d82`); champion confirmou recebimento na caixa `vinicius@terceirizou.com.br` **sem cair no spam**.
 
 ## Próximo passo
 
-F3-T04 (champion registra cadência/modelos do follow-up e valida Resend sandbox) é a próxima elegível — depende de decisões do champion (cadência, modelos, remetente, base legal).
+F3-T05 (implementar sequência de e-mail idempotente) é a próxima elegível — código de envio real usando a config aprovada e a chave no cofre do Skip.

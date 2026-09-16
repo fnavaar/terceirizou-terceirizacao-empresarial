@@ -1,0 +1,5 @@
+# Aprendizado contínuo — F3-T04
+
+- **Sinal reutilizável:** o Resend bloqueia envio com remetente de domínio não verificado usando HTTP 403 `"The <dominio> domain is not verified"` — a chave API funciona (autentica) mas o envio falha. Isso é a falha segura esperada: nenhum e-mail sai e a mensagem diz exatamente o que falta. Padrão de prova RED/GREEN: rodar o MESMO payload de teste antes e depois da verificação DNS do domínio — 403 antes, 200 depois prova os dois caminhos sem inventar cenário.
+- **Sinal reutilizável:** rascunhos de copy gerados no estilo documentado do champion (saudação + nome, contexto → valor → chamada, fechamentos "certo?"/"de imediato"/"Qualquer dúvida estamos à disposição", sem desconto, sem jargão) foram aprovados sem nenhum ajuste. Investir na leitura do estilo antes de rascunhar economiza um ciclo inteiro de revisão.
+- **Sem sinal reutilizável:** verificação DNS do domínio no painel Resend foi feita pelo champion fora do fluxo (passo a passo fornecido, execução dele) — nada a capturar do lado da execução.

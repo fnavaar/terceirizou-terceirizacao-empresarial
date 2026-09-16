@@ -3,11 +3,11 @@
 - task_id: F3-T04
 - champion: Vinicius (CEO)
 - spec: 04_fase-atual/specs/spec-3-002-follow-up-email-resend.md
-- etapa: aguardando_teste_humano
-- autorizacao_implementacao: confirmada + 2026-09-06T11:45 — formulário "pode registrar e validar sandbox" + pedido do champion "tenta enviar um e-mail de teste"
-- teste_humano: CONFIRMADO 2026-09-16T10:45 — champion reportou "E-mail chegou e não foi para spam" (caixa vinicius@terceirizou.com.br, remetente financeiro@terceirizou.com.br, ID Resend 1757d405-938c-4fd5-a97e-f8c7c46a6d82)
-- verificacao_automatica: completa — (1) falha segura provada: 403 "domain is not verified" antes da verificação DNS, sem falso sucesso (CA-3-104); (2) sucesso provado: HTTP 200 após verificação do domínio; (3) entrega real confirmada pelo champion, sem spam; (4) chave RESEND_API_KEY apenas no cofre de secrets do Skip, nunca no Git
-- aprendizado: pendente
-- ultima_acao: champion confirmou recebimento do e-mail de teste sem spam — sandbox Resend fechado
-- proxima_acao: champion fornecer os 3 textos da cadência (ou aprovar rascunho) → registrar em config/cadencia_followup_v1.json → concluir F3-T04
-- atualizado_em: 2026-09-16T10:47:00-03:00
+- etapa: concluida
+- autorizacao_implementacao: confirmada + 2026-09-06T11:45 e aprovação dos textos em 2026-09-16T13:17
+- teste_humano: APROVADO — champion confirmou recebimento do e-mail de teste sem spam (2026-09-16) e aprovou os 3 textos como versão final
+- verificacao_automatica: completa — RED (403 domínio não verificado, sem falso sucesso) + GREEN (HTTP 200, ID 1757d405) + entrega confirmada + config v1.1 aprovada com os 3 modelos
+- aprendizado: registrado em 06_notas/aprendizado-continuo/F3-T04-aprendizado.md
+- ultima_acao: F3-T04 concluída e registrada (config v1.1, fase-3.md 4/7, STATUS.md, changelog)
+- proxima_acao: aguardar pedido do champion para iniciar F3-T05 (implementar sequência de e-mail idempotente)
+- atualizado_em: 2026-09-16T13:25:00-03:00
