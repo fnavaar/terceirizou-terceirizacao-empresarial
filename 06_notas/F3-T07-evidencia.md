@@ -1,0 +1,19 @@
+# F3-T07 — Evidência da prova final (roteiro ponta a ponta, 2026-09-16)
+
+Ambiente: Skip v0.0.55 (hash ea8471e), QA 5/5. Leads sintéticos criados para a prova.
+
+| # | Lead | Cenário | CA | Resultado observado | Status |
+|---|------|---------|----|---------------------|--------|
+| 1 | f3t07-inelegivel (roieix24tsx3y2a) | sem qualificação (pendente_revisao) | CA-3-101 | disparo → 409 lead_nao_qualificado, chamada_resend=false | ✅ |
+| 2 | f3t07-elegivel (iz32sf2lcod6p8g) | qualificado, e-mail válido (champion) | CA-3-102 | t1 → 201 sent (resend 01a0ac22-ca7d); repetição → 200 already_sent, mesmo id | ✅ |
+| 3 | f3t07-parada (ak445a14oayo740) | qualificado + parada descadastro | CA-3-103 | parada → 200 parado/nao_contatar; disparo → 409 followup_parado:descadastro | ✅ |
+| 4 | f3t07-falha (96ybn28uvvwpdb7) | qualificado, domínio @example.invalid | CA-3-104 (variante) | Resend ACEITOU (201) — bounce é assíncrono; sem erro síncrono | ⚠️ nota |
+| 5 | f3t07-falha2 (nnr3hkl33jhhby7) | qualificado, destinatário fora da allowlist do Resend | CA-3-104 | Resend 422 "use our testing email address" → hook 502 resend_indisponivel_ou_invalido + error_log (dono Henrique, pendente) + lead followup_estado=falha, sem envio_id | ✅ |
+
+## Notas da prova
+
+- **Lead 4 (variante):** domínios reservados (.invalid) não são rejeitados de forma síncrona pela API do Resend — aceita o envio e o bounce vem depois (webhook/evento, evolução futura). Não é falha do hook: é o comportamento do provedor.
+- **Lead 5 (falha real):** contas Resend sem pagamento só enviam para o próprio e-mail do dono da conta. Destinatário fora dessa allowlist → 422 síncrono → hook trata como falha (502 + error_log + lead em falha, sem falso sucesso). CA-3-104 provada pelo caminho real.
+- **Chave:** durante a prova, RESEND_API_KEY foi substituída por chave inválida e restaurada em seguida (o 502 do lead 5 veio do 422 do Resend, não da chave — confirmado: chave real retorna 200 na API direta; chave inválida retorna 401). Runtime Skip carrega secret no boot: troca exige redeploy para propagar (v0.0.55).
+- **Descoberta operacional (Resend):** sem cartão na conta, só é possível enviar para o próprio e-mail do dono da conta. Para a cadência real valer para leads, a conta Resend precisa ter domínio verificado + meio de pagamento (ou lista de destinatários liberada). Pendência de negócio para o champion.
+- **E-mails reais recebidos pelo champion durante a prova:** lead 2 (D+0 da cadência v1.1) + 1 e-mail de validação pós-prova.
