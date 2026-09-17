@@ -1,13 +1,13 @@
 # Estado atual — Adapta Cliente
 
-- task_id: F3-T07
+- task_id: e4c77e80 (Fase 4 — primeira task: confirmação de acesso de leitura Meta)
 - champion: Vinicius (CEO)
-- spec: 04_fase-atual/specs/spec-3-002-follow-up-email-resend.md
-- etapa: concluida
-- autorizacao_implementacao: confirmada + 2026-09-16T18:32 — "pode executar"
-- teste_humano: APROVADO + 2026-09-16T18:56 — "aceito a fase" (champion confirmou e-mail do lead 2 e aceitou a Fase 3)
-- verificacao_automatica: passou — CA-3-101..104 provadas com 5 leads sintéticos; evidência em 06_notas/F3-T07-evidencia.md; v0.0.55 QA 5/5
-- aprendizado: capturado:06_notas/aprendizado-continuo/F3-T07-aprendizado.md
-- ultima_acao: F3-T07 concluída e Fase 3 encerrada 7/7 pelo champion (fase-3.md, STATUS.md, changelog)
-- proxima_acao: aguardar SPEC/planejamento do consultor para a próxima fase (candidatas: scheduler da cadência, webhook de bounce, painel visual do follow-up)
-- atualizado_em: 2026-09-16T19:00:00-03:00
+- spec: 04_fase-atual/specs/spec-4-001-conector-meta-leitura.md
+- etapa: aguardando_autorizacao (bloqueio humano B4-101/102/104 com o champion)
+- autorizacao_implementacao: ausente — aguardando conta Meta confirmada + token de leitura + janela aprovada
+- teste_humano: pendente
+- verificacao_automatica: pendente
+- aprendizado: pendente
+- ultima_acao: Fase 4 publicada pelo consultor (commits 18h24-18h26 de 17/09); quadro e SPEC-4-001 lidos; primeira task elegível é bloqueio humano do champion (B4-101..104)
+- proxima_acao: coletar do champion conta Meta (B4-101), token de leitura (B4-102, só no cofre) e janela/amostra (B4-104); depois executar prova técnica timeboxed (B4-103) na task cd704a1c
+- atualizado_em: 2026-09-17T17:45:00-03:00
