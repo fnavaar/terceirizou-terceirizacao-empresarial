@@ -1,6 +1,7 @@
 ## 2026-09-17
 
 - [Adapta/Ethos] Checagem de sanidade do disparo de e-mails (pedido do champion): envio direto via Resend → HTTP 200 (ID 01a0b047) e teste de entrega → HTTP 200 (ID 01a0b049, assunto "[TESTE 17/09 13:52]"). Champion confirmou chegada na caixa principal, sem spam. CRM auditado: 5 leads com follow-up registrado, 4 envios no histórico (Fase 3), nenhum disparo fantasma; fila de exceção íntegra.
-- [Adapta/Ethos] Achado operacional: chave RESEND_API_KEY é send-only (401 em leitura de lista de e-mails) — auditoria de disparos fica pelo registro no CRM (resend_email_id por envio); rastreabilidade de entrega (abertura/bounce) exige chave com leitura ou webhooks. Pendência de negócio mantida: conta Resend sem meio de pagamento só envia para o e-mail do dono (lead real externo → 422). Fase 4 segue aguardando SPEC do consultor.
+- [Adapta/Ethos] Achado operacional: chave RESEND_API_KEY é send-only (401 em leitura de lista de e-mails) — auditoria de disparos fica pelo registro no CRM (resend_email_id por envio); rastreabilidade de entrega (abertura/bounce) exige chave com leitura ou webhooks.
+- [Adapta/Ethos] **CORREÇÃO do diagnóstico da F3-T07 (pendência de negócio RESOLVIDA):** teste real com destinatário externo (oliveiradacosta.vinicius@gmail.com) → HTTP 200, recebido na caixa Gmail confirmado pelo champion. O 422 da prova final rejeitava o domínio RESERVADO de teste (example.com), não destinatários externos. Com o domínio terceirizou.com.br verificado, a cadência funciona para leads reais no plano Free (3.000/mês, 100/dia) — cartão não é destravamento, vira decisão de limite de volume. Pendência encerrada.
 
 ## 2026-09-16
