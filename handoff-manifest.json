@@ -1,12 +1,12 @@
 {
   "schemaVersion": "adapta-cliente-handoff/v1",
-  "phase": 2,
+  "phase": 4,
   "versions": {
     "package": "0.1.0",
     "adapta": "0.7.0",
     "adaptaCliente": "0.2.0"
   },
-  "generatedAt": "2026-08-26T16:10:42.394Z",
+  "generatedAt": "2026-09-17T18:30:00.000Z",
   "files": [
     {
       "path": "04_fase-atual/README.md",
@@ -15,13 +15,38 @@
     },
     {
       "path": "04_fase-atual/fase.md",
-      "sha256": "f813434f7421c409fa2d1e3627c00326c70bc27407cf3230d4656b4ed837ffbd",
+      "sha256": "5972c54c631355f3e109d266ec32e217a9ea84f7bc95957ceffb0b259c3fcf7e",
       "classification": "fase-atual"
     },
     {
-      "path": "04_fase-atual/specs/spec-2-001-qualificacao-pontuacao-roteamento.md",
-      "sha256": "967420f3bae8853b5cb5e83ffb74ab6fae7c9a49c12f51edfcb536a794ad150a",
+      "path": "04_fase-atual/00-Tasks_Gerais.md",
+      "sha256": "de65fa87d936e9242c223297fb0d31edee5631419846b9771a7540bec27fe94f",
+      "classification": "tasks-fase-atual"
+    },
+    {
+      "path": "04_fase-atual/specs/00-INDICE.md",
+      "sha256": "b7ba4525c1ed6f88a1758e39a3ea602be92eb4bab93bf6b02f0b66ea20a37d51",
       "classification": "spec-fase-atual"
+    },
+    {
+      "path": "04_fase-atual/specs/spec-4-001-conector-meta-leitura.md",
+      "sha256": "e6b0ee9639e9a7f82423b97bba00060cc39ea6a5dedd9923ae377e2ced29e289",
+      "classification": "spec-fase-atual"
+    },
+    {
+      "path": "04_fase-atual/specs/spec-4-002-qualidade-origem-reativacao.md",
+      "sha256": "8ae14c8df7c2a1c8f74b16432cbef52cb74a973cf42f9e58424f811d66756461",
+      "classification": "spec-fase-atual"
+    },
+    {
+      "path": "04_fase-atual/specs/spec-4-003-leitura-assistida-loops.md",
+      "sha256": "a930de1cad945d6e065bf5eaba1efff5f51b81f75e534b89fef867070abbab68",
+      "classification": "spec-fase-atual"
+    },
+    {
+      "path": "05_entregas/fase-3/README.md",
+      "sha256": "679e647244f8f818ddcbb2e1285662d16566cb14538614680520d91f02d8fcf8",
+      "classification": "entrega-arquivada"
     }
   ]
 }
