@@ -11,6 +11,8 @@
 // Requer autenticacao.
 // NOTA runtime Skip: constantes/helpers declarados DENTRO do callback do routerAdd —
 // escopo de módulo não fica visível ao handler (padrão de agendar_lead.js/agendar_borda.js).
+// v0.0.54: paradas checadas antes do envio; secrets lidas a cada request via $secrets.get.
+// v0.0.65: BCC financeiro@terceirizou.com.br em todo disparo (registro na caixa do financeiro).
 
 routerAdd(
   'POST',
@@ -23,19 +25,22 @@ routerAdd(
         ordem: 1,
         dia: 'D+0',
         assunto: '{{nome}}, sua gestão financeira organizada — vale 15 minutos?',
-        corpo: 'Bom dia {{nome}}!\n\nRecebi seu contato pelo nosso formulário. Antes de qualquer proposta, quero entender o seu financeiro: como estão as contas a pagar e a receber, e o quanto o dono ainda faz na mão.\n\nA Terceirizou faz o financeiro de prestadores de serviço: organiza os dados, entrega fluxo de caixa e DRE, e dá direção para a decisão. Mais do que terceirizar o financeiro.\n\nSe fizer sentido, escolha um horário aqui: {{link_agenda}}\nSe preferir, responda este e-mail com uma pergunta direta — respondo de imediato.\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
+        corpo:
+          'Bom dia {{nome}}!\n\nRecebi seu contato pelo nosso formulário. Antes de qualquer proposta, quero entender o seu financeiro: como estão as contas a pagar e a receber, e o quanto o dono ainda faz na mão.\n\nA Terceirizou faz o financeiro de prestadores de serviço: organiza os dados, entrega fluxo de caixa e DRE, e dá direção para a decisão. Mais do que terceirizar o financeiro.\n\nSe fizer sentido, escolha um horário aqui: {{link_agenda}}\nSe preferir, responda este e-mail com uma pergunta direta — respondo de imediato.\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
       },
       {
         ordem: 2,
         dia: 'D+1',
         assunto: 'O que muda quando o financeiro sai da mão do dono',
-        corpo: 'Bom dia {{nome}}!\n\nA maioria dos prestadores que atendo chega com o mesmo cenário: contas misturadas, fluxo de caixa na cabeça do dono e decisão sem número.\n\nDepois que assumimos a gestão: caixa organizado, relatórios legíveis e o dono decide com dado — sem virar refém do financeiro no fim do mês.\n\nQuero te mostrar isso com o SEU número, não com exemplo. 15 minutos resolvem.\n\n{{link_agenda}}\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
+        corpo:
+          'Bom dia {{nome}}!\n\nA maioria dos prestadores que atendo chega com o mesmo cenário: contas misturadas, fluxo de caixa na cabeça do dono e decisão sem número.\n\nDepois que assumimos a gestão: caixa organizado, relatórios legíveis e o dono decide com dado — sem virar refém do financeiro no fim do mês.\n\nQuero te mostrar isso com o SEU número, não com exemplo. 15 minutos resolvem.\n\n{{link_agenda}}\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
       },
       {
         ordem: 3,
         dia: 'D+2',
         assunto: 'Encerro por aqui, {{nome}} — a porta fica aberta',
-        corpo: 'Bom dia {{nome}}!\n\nNão quero insistir. Se o momento não é agora, tudo bem — encerro a sequência por aqui.\n\nDeixo só o essencial: quando o financeiro começar a pesar na sua operação, o primeiro passo é uma conversa de 15 minutos. A porta fica aberta.\n\n{{link_agenda}}\n\nQualquer dúvida estamos à disposição.\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
+        corpo:
+          'Bom dia {{nome}}!\n\nNão quero insistir. Se o momento não é agora, tudo bem — encerro a sequência por aqui.\n\nDeixo só o essencial: quando o financeiro começar a pesar na sua operação, o primeiro passo é uma conversa de 15 minutos. A porta fica aberta.\n\n{{link_agenda}}\n\nQualquer dúvida estamos à disposição.\n\nVinícius Oliveira da Costa\nTerceirizou — mais do que terceirizar o financeiro\nterceirizou.com.br',
       },
     ]
 
@@ -59,10 +64,14 @@ routerAdd(
         if (linha.trim() === '') {
           html += '<br>'
         } else {
-          html += '<p style="margin:0 0 12px 0;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#222">' + escapeHtml(linha) + '</p>'
+          html +=
+            '<p style="margin:0 0 12px 0;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#222">' +
+            escapeHtml(linha) +
+            '</p>'
         }
       }
-      html += '<p style="font-family:Arial,sans-serif;font-size:11px;color:#999"><a href="{{link_descadastro}}" style="color:#999">Não quero mais receber estes e-mails</a></p>'
+      html +=
+        '<p style="font-family:Arial,sans-serif;font-size:11px;color:#999"><a href="{{link_descadastro}}" style="color:#999">Não quero mais receber estes e-mails</a></p>'
       return html
     }
 
@@ -83,6 +92,15 @@ routerAdd(
       return e.json(409, {
         status: 'bloqueado',
         motivo: 'configuracao_cadencia_nao_aprovada',
+        chamada_resend: false,
+      })
+    }
+
+    // --- RN-3-103: parada ativa -> zero envio, historico preservado ---
+    if (lead.get('followup_estado') === 'parado') {
+      return e.json(409, {
+        status: 'bloqueado',
+        motivo: 'followup_parado:' + (lead.get('followup_parada') || 'sem_motivo'),
         chamada_resend: false,
       })
     }
@@ -125,8 +143,7 @@ routerAdd(
     const chave = leadId + ':followup:v' + CADENCIA_VERSAO + ':t' + tentativa
 
     // --- Idempotência (CA-3-102): repetir não envia de novo ---
-    if (lead.get('followup_idempotency_key') === chave && lead.get('followup_ultimo_envio_id')
-) {
+    if (lead.get('followup_idempotency_key') === chave && lead.get('followup_ultimo_envio_id')) {
       return e.json(200, {
         status: 'already_sent',
         lead_id: lead.get('lead_id'),
@@ -138,7 +155,11 @@ routerAdd(
     // --- Render dos modelos aprovados (sem copy nova) ---
     const nome = String(lead.get('nome') || '').trim()
     const assunto = modelo.assunto.split('{{nome}}').join(nome)
-    const corpoTexto = modelo.corpo.split('{{nome}}').join(nome).split('{{link_agenda}}').join(LINK_AGENDA)
+    const corpoTexto = modelo.corpo
+      .split('{{nome}}')
+      .join(nome)
+      .split('{{link_agenda}}')
+      .join(LINK_AGENDA)
     const html = corpoHtml(corpoTexto)
 
     // --- Envio via Resend ---
@@ -156,7 +177,17 @@ routerAdd(
         errRec.set('estado', 'pendente')
         errRec.set('dono', 'Henrique Tavano')
         errRec.set('proxima_acao', 'configurar RESEND_API_KEY no cofre do Skip')
-        errRec.set('historico', JSON.stringify([{ acao: 'criacao', ator: 'followup_lead', data: new Date().toISOString(), detalhes: 'sem chave resend' }]))
+        errRec.set(
+          'historico',
+          JSON.stringify([
+            {
+              acao: 'criacao',
+              ator: 'followup_lead',
+              data: new Date().toISOString(),
+              detalhes: 'sem chave resend',
+            },
+          ]),
+        )
         $app.save(errRec)
       } catch (_) {}
       return e.json(503, {
@@ -166,35 +197,80 @@ routerAdd(
       })
     }
 
-    let resposta = $http.send({
-      url: 'https://api.resend.com/emails',
-      method: 'POST',
-      headers: { Authorization: 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from: REMETENTE,
-        to: [email],
-        subject: assunto,
-        text: corpoTexto,
-        html: html,
-      }),
-      timeout: 15,
-    })
+    const idempotencyKey = 'followup/' + chave
+    let resposta = null
+    try {
+      resposta = $http.send({
+        url: 'https://api.resend.com/emails',
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + apiKey,
+          'Content-Type': 'application/json',
+          'User-Agent': 'terceirizou-crm-followup/1.0',
+          'Idempotency-Key': idempotencyKey,
+        },
+        body: JSON.stringify({
+          from: REMETENTE,
+          to: [email],
+          bcc: ['financeiro@terceirizou.com.br'],
+          subject: assunto,
+          text: corpoTexto,
+          html: html,
+        }),
+        timeout: 15,
+      })
+    } catch (_) {
+      resposta = null
+    }
 
-    // --- Falha Resend: sem falso sucesso, fila humana (CA-3-104) — sem chave exposta ---
-    if (resposta.statusCode < 200 || resposta.statusCode >= 300 || !resposta.json || !resposta.json.id) {
+    // --- Falha Resend: sem falso sucesso, fila humana (CA-3-104) ---
+    if (
+      !resposta ||
+      resposta.statusCode < 200 ||
+      resposta.statusCode >= 300 ||
+      !resposta.json ||
+      !resposta.json.id
+    ) {
       try {
         const errCol = $app.findCollectionByNameOrId('error_log')
         const errRec = new Record(errCol)
         errRec.set('error_id', $security.randomString(12))
         errRec.set('source_event_id', leadId)
         errRec.set('categoria', 'timeout')
-        errRec.set('resumo', 'falha envio follow-up Resend (HTTP ' + resposta.statusCode + '): ' + lead.get('lead_id'))
-        errRec.set('payload_resumido', 'lead_id=' + leadId + ';tentativa=' + tentativa + ';http=' + resposta.statusCode)
+        errRec.set(
+          'resumo',
+          'falha envio follow-up Resend (' +
+            (resposta ? 'HTTP ' + resposta.statusCode : 'erro de transporte') +
+            '): ' +
+            lead.get('lead_id'),
+        )
+        errRec.set(
+          'payload_resumido',
+          'lead_id=' +
+            leadId +
+            ';tentativa=' +
+            tentativa +
+            ';http=' +
+            (resposta ? resposta.statusCode : 'transport_error'),
+        )
         errRec.set('tentativa', 1)
         errRec.set('estado', 'pendente')
         errRec.set('dono', 'Henrique Tavano')
-        errRec.set('proxima_acao', 'verificar dominio/chave Resend e reenviar manualmente')
-        errRec.set('historico', JSON.stringify([{ acao: 'criacao', ator: 'followup_lead', data: new Date().toISOString(), detalhes: 'HTTP ' + resposta.statusCode }]))
+        errRec.set(
+          'proxima_acao',
+          'verificar dominio/chave/indisponibilidade Resend e reenviar manualmente',
+        )
+        errRec.set(
+          'historico',
+          JSON.stringify([
+            {
+              acao: 'criacao',
+              ator: 'followup_lead',
+              data: new Date().toISOString(),
+              detalhes: resposta ? 'HTTP ' + resposta.statusCode : 'erro de transporte',
+            },
+          ]),
+        )
         $app.save(errRec)
       } catch (_) {}
       lead.set('followup_estado', 'falha')
@@ -202,7 +278,7 @@ routerAdd(
       $app.save(lead)
       return e.json(502, {
         status: 'falha',
-        motivo: 'resend_indisponivel_ou_invalido',
+        motivo: resposta ? 'resend_indisponivel_ou_invalido' : 'resend_erro_de_transporte',
         chamada_resend: true,
       })
     }
@@ -255,7 +331,10 @@ routerAdd(
     lead.set('followup_ultimo_envio_id', resposta.json.id)
     lead.set('followup_tentativa', tentativa)
     lead.set('followup_idempotency_key', chave)
-    lead.set('followup_proxima_acao', tentativa < 3 ? 'aguardar_intervalo_proxima_tentativa' : 'cadencia_concluida')
+    lead.set(
+      'followup_proxima_acao',
+      tentativa < 3 ? 'aguardar_intervalo_proxima_tentativa' : 'cadencia_concluida',
+    )
     lead.set('followup_historico', JSON.stringify(hist))
     $app.save(lead)
 
