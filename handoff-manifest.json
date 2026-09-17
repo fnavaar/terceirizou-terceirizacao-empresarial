@@ -15,37 +15,37 @@
     },
     {
       "path": "04_fase-atual/fase.md",
-      "sha256": "5972c54c631355f3e109d266ec32e217a9ea84f7bc95957ceffb0b259c3fcf7e",
+      "sha256": "8c2c90a4f4c2bf7ac03e4cb9d9a8e7e50183834c32958f5443aed5462f70c7fd",
       "classification": "fase-atual"
     },
     {
       "path": "04_fase-atual/00-Tasks_Gerais.md",
-      "sha256": "de65fa87d936e9242c223297fb0d31edee5631419846b9771a7540bec27fe94f",
+      "sha256": "9698048b85658f79ecb1a985210a76415f8537bf7d5464c52120e1ebfd338460",
       "classification": "tasks-fase-atual"
     },
     {
       "path": "04_fase-atual/specs/00-INDICE.md",
-      "sha256": "b7ba4525c1ed6f88a1758e39a3ea602be92eb4bab93bf6b02f0b66ea20a37d51",
+      "sha256": "87a3909e84e76cf114cebc56e6d09d33af51b16a764dd410cf4557fc3c605408",
       "classification": "spec-fase-atual"
     },
     {
       "path": "04_fase-atual/specs/spec-4-001-conector-meta-leitura.md",
-      "sha256": "e6b0ee9639e9a7f82423b97bba00060cc39ea6a5dedd9923ae377e2ced29e289",
+      "sha256": "a2ee13e788384c681273bf4722ef961ad14ab7b8d097d3dc19e689c3d2b328db",
       "classification": "spec-fase-atual"
     },
     {
       "path": "04_fase-atual/specs/spec-4-002-qualidade-origem-reativacao.md",
-      "sha256": "8ae14c8df7c2a1c8f74b16432cbef52cb74a973cf42f9e58424f811d66756461",
+      "sha256": "6de3579bbbe4ac49d062fe9cdc23347a2cd02a0f2e7ff441322a6794113edb53",
       "classification": "spec-fase-atual"
     },
     {
       "path": "04_fase-atual/specs/spec-4-003-leitura-assistida-loops.md",
-      "sha256": "a930de1cad945d6e065bf5eaba1efff5f51b81f75e534b89fef867070abbab68",
+      "sha256": "bd3f98f9c906cbe25ba842b843f5406c2e38fb526de0ba14c9b225838bc84f21",
       "classification": "spec-fase-atual"
     },
     {
       "path": "05_entregas/fase-3/README.md",
-      "sha256": "679e647244f8f818ddcbb2e1285662d16566cb14538614680520d91f02d8fcf8",
+      "sha256": "419b83c97ca8e52003ac2933d2d1d7f4b37dc83195b44bff9830c0cb75c1eb57",
       "classification": "entrega-arquivada"
     }
   ]
