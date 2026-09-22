@@ -2,12 +2,12 @@
 
 - task_id: cd704a1c (Fase 4 — espelhar origem/campanha/anúncio no CRM)
 - champion: Vinicius (CEO)
-- spec: 04_fase-atual/specs/spec-4-001-conector-meta-leitura.md
+- spec: 04-fase-atual/specs/spec-4-001-conector-meta-leitura.md
 - etapa: aguardando_teste_humano
 - autorizacao_implementacao: confirmada + 2026-09-22T11:19 — "pode implementar este plano"
-- teste_humano: pendente — champion confere meta_campanha/meta_anúncio com proveniência em um lead espelhado
-- verificacao_automatica: passou — modo prova 200 (76 anúncios/12 adsets/6 campanhas, zero ingestão); espelhar: 50 avaliados, 44 espelhados, 6 sem_dado_meta, 0 divergentes; idempotência 2 rodadas idênticas; RED com chave inválida → 502 lacuna zero ingestão; v0.0.76 QA 5/5
+- teste_humano: pendente — preview v0.0.79 exibe 50 leads Meta reais; champion deve conferir lead com status Espelhado e proveniência
+- verificacao_automatica: passou — backend 44 espelhados/6 sem_dado_meta/0 divergentes; UI QA Skip 5/5; preview verificado no navegador com campanha, anúncio, status e proveniência reais
 - aprendizado: pendente
-- ultima_acao: espelhamento executado e convergido (v0.0.76)
-- proxima_acao: apresentar roteiro de teste humano e aguardar confirmação do champion
-- atualizado_em: 2026-09-22T11:50:00-03:00
+- ultima_acao: correção de interface aplicada; dashboard agora lê `leads` via PocketBase e exibe seção Leads reais — espelho Meta
+- proxima_acao: champion conferir preview e confirmar campanha/anúncio/proveniência de um lead espelhado
+- atualizado_em: 2026-09-22T12:15:00-03:00
