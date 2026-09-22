@@ -1,37 +1,37 @@
 # STATUS — Projeto Terceirizou Terceirização Empresarial
 
-> **Atualizado em:** 2026-09-17 · **Por:** Adapta/Ethos
+> **Atualizado em:** 2026-09-22 20:02 · **Fonte técnica:** Skip projectId 51268
 
 ## Onde estamos
 
-- **Fase 1:** concluída (10/10).
-- **Fase 2:** concluída (5/5).
-- **Fase 3:** ✅ **ENCERRADA pelo champion em 2026-09-16 — 7/7 tasks** (aceite final "aceito a fase"). Arquivada em `05_entregas/fase-3/`.
-- **Fase 4:** ✅ **LIBERADA em 2026-09-17** — SPEC-4-001 (conector Meta de leitura), SPEC-4-002 (qualidade por origem, reativação e painel do follow-up), SPEC-4-003 (loops L4.1/L4.2); 8 tasks na Jornada (`04_fase-atual/fase.md`); Champion Vinicius, prazo 30/09/2026.
-- **Check-fase-3:** APROVADO em 2026-09-17 (digest do estado encerrado: HEAD `bab9454`).
-- **Skip:** v0.0.55, hash `ea8471e` (QA 5/5).
-- **Próxima task elegível:** somente a primeira da F4 (confirmar acesso de leitura à conta do Meta — @Izabel, 22/09); as demais bloqueadas por dependência, prova e teste humano.
+- **Fase 1:** concluída — 10/10 tasks.
+- **Fase 2:** concluída — 5/5 tasks.
+- **Fase 3:** concluída — 7/7 tasks, aceite final do champion em 2026-09-16.
+- **Fase 4:** em andamento — **2/8 tasks concluídas** (`e4c77e80`, `cd704a1c`); prazo 30/09/2026.
+- **Task `cd704a1c`:** concluída após QA técnico, verificação no preview e aceite humano do champion em 22/09/2026.
+- **Skip:** CRM Oficial; implementação em v0.0.79 (`b2e260c`) e fechamento documental final em v0.0.86 (`bf6640a`), todos com QA 5/5.
+- **Preview:** https://crm-oficial-65bb8--preview.goskip.app
+- **Produção:** https://crm-oficial-65bb8.goskip.app (não atualizada neste ciclo; aceite realizado no preview)
+- **GitHub:** código da integração no commit `91f36b3`; fechamento documental sincronizado neste ciclo.
 
-## Pendências de negócio
+## Resultado da Fase 4 até aqui
 
-- ~~Meio de pagamento na conta Resend~~ — **RESOLVIDA 2026-09-17:** teste real com destinatário externo (Gmail) confirmou que a cadência funciona para leads reais no plano Free com o domínio verificado. O 422 da prova F3-T07 era o domínio reservado example.com, não restrição de conta. Cartão no Resend vira decisão de limite de volume (Free: 3.000/mês, 100/dia), não de destravamento.
+- `e4c77e80`: conta Meta confirmada e credencial mantida no secret manager, fora do Git.
+- `cd704a1c`: espelho Meta de leitura implementado sem escrita no Meta.
+- Prova técnica: 76 anúncios, 12 conjuntos e 6 campanhas lidos; espelhamento idempotente validado.
+- Dados no CRM: 50 leads Meta avaliados, 44 espelhados, 6 sem dado Meta e 0 divergentes.
+- Interface nova: seção `Leads reais — espelho Meta` lê a collection real `leads` via PocketBase e exibe campanha, anúncio, status, busca, filtros e proveniência.
+- Ausência preservada como `sem dado Meta`; dados originais do lead não são sobrescritos.
+- Teste humano do champion: aprovado no preview — “testei no preview e funcionou”.
 
-## O que a Fase 3 entregou
+## Inventário Fase 4
 
-- Autoagendamento idempotente no Google Calendar (janelas aprovadas, cancelamento, no-show, falha segura).
-- Follow-up por e-mail via Resend com a cadência/modelos aprovados pelo champion (v1.1), disparo idempotente, paradas automáticas (resposta/agendamento/cancelamento/no_show/descadastro/bounce), fila humana de exceções e histórico append-only com destinatário mascarado.
-- LGPD: base legal interesse legítimo registrada; descadastro tratado como parada definitiva (nao_contatar).
-- Sanidade do disparo validada em 17/09: entrega na caixa principal confirmada pelo champion; CRM com 4 envios íntegros da fase, nenhum disparo fantasma.
+- `pocketbase/migrations/0012_add_meta_espelho_fields.js`
+- `pocketbase/hooks/meta_espelho.js`
+- `src/components/dashboard/MetaLeadsRealCard.tsx`
+- `src/pages/Index.tsx`
+- `04-fase-atual/specs/spec-4-001-conector-meta-leitura.md`
 
-## O que a Fase 4 vai entregar (planejado)
+## Próximo passo
 
-- Origem de campanha/anúncio do Meta relacionada aos leads com proveniência (condicionada a prova técnica timeboxed; sem prova, conector inativo com exportação manual).
-- Tela de qualidade por origem/campanha (vazio ≠ zero) e fila de reativação assistida (nenhum contato sem aprovação humana do lote).
-- Painel visual do follow-up na tela do lead (evolução aceita em 17/09).
-- Loops L4.1 (analista de campanhas) e L4.2 (monitor de qualidade) somente recomendando — nunca alteram campanha, orçamento ou público.
-
-## Bloqueios humanos da F4
-
-- B4-101..104: conta Meta, credencial no cofre, escopos, amostra/período (champion + prova técnica).
-- B4-201..203: critério de reativação, consentimento, métrica de qualidade (champion).
-- B4-301..304: cadência, prompt homologado, teto, baseline dos loops (call de setup).
+A próxima task elegível é `b7c2faea` — comparação de quantidade e qualidade de leads por campanha. Ela não foi iniciada automaticamente; exige nova análise e autorização do champion.
