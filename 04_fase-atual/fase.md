@@ -2,8 +2,6 @@
 
 <!-- fase-format:2 -->
 
-Cada linha é uma tarefa da Jornada de Execução. **Tudo que cabe num card cabe nesta linha** — se um campo não estiver aqui, ele não tem como ser preenchido, porque é este arquivo que cria a tarefa.
-
 - [x] Confirmar com o Cliente o acesso de leitura à conta do Meta e anexar a resposta @Izabel !22/09/2026 #aculturamento [interno] <!-- id:e4c77e80-e32f-4479-8f42-709d520aa28b -->
   > SPEC-4-001 · B4-101 · Conta de anúncios confirmada; credencial em secret manager.
 - [x] Trazer para o CRM a origem, a campanha e o anúncio de cada lead @Cliente !24/09/2026 [interno] <!-- id:cd704a1c-72c3-48e2-85b3-369d9d25175d -->
