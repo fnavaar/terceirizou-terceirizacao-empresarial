@@ -147,6 +147,6 @@ Ciclo controlado: baseline conhecido → execução do L4.1 em amostra → sinal
 
 | ID | Task | Dono | SPEC | Critério | Recorte da prova | Evidência esperada | Pré-condições | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1a38ea22 | Configurar uma análise que sugira aprendizados sobre campanhas | Cliente | 4-003 | CA-4-301/302/305 | RED sem setup + GREEN ciclo controlado L4.1 | registros + prova negativa de alteração | 5ef4b7cd | BLOQUEADA |
-| 82524cff | Revisar dez recomendações de campanha e registrar quais serão usadas | Felipe Navaar | 4-003 | CA-4-304 | revisão humana com decisão registrada | decisões com autor/data | 1a38ea22 | BLOQUEADA |
-| id pendente | Monitorar queda de qualidade por origem com baseline | Cliente | 4-003 | CA-4-303 | sinal com/sem baseline | registros do monitor | 1a38ea22 | BLOQUEADA · aguarda UUID |
+| 1a38ea22 | Configurar uma análise que sugira aprendizados sobre campanhas | Cliente | 4-003 | CA-4-301/302/305 | RED sem setup + GREEN ciclo controlado L4.1 | registros + prova negativa de alteração | 5ef4b7cd | LIBERADA (19/10/2026) |
+| 82524cff | Revisar dez recomendações de campanha e registrar quais serão usadas | Felipe Navaar | 4-003 | CA-4-304 | revisão humana com decisão registrada | decisões com autor/data | 1a38ea22 | LIBERADA (19/10/2026) |
+| id pendente | Monitorar queda de qualidade por origem com baseline | Cliente | 4-003 | CA-4-303 | sinal com/sem baseline | registros do monitor | 1a38ea22 | LIBERADA (19/10/2026) · aguarda UUID |
