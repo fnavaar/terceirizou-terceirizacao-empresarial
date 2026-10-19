@@ -7,7 +7,7 @@
 - **Fase 1:** concluída — 10/10 tasks.
 - **Fase 2:** concluída — 5/5 tasks.
 - **Fase 3:** concluída — 7/7 tasks, aceite final do champion em 2026-09-16.
-- **Fase 4:** em andamento — **2/8 tasks concluídas** (`e4c77e80`, `cd704a1c`); `b7c2faea` implementada em 19/10/2026, aguardando QA no Skip e teste humano. Prazo original 30/09/2026 vencido; reprogramado em 19/10/2026 (autorização de Navaar): nova janela 06/11–04/12/2026.
+- **Fase 4:** em andamento — **2/8 tasks concluídas** (`e4c77e80`, `cd704a1c`); `b7c2faea` implementada em 19/10/2026, aguardando QA no Skip e teste humano; **todas as 8 tasks liberadas em 19/10/2026 (decisão de Navaar)**. Prazo original 30/09/2026 vencido; reprogramado em 19/10/2026 (autorização de Navaar): nova janela 06/11–04/12/2026.
 - **Task `cd704a1c`:** concluída após QA técnico, verificação no preview e aceite humano do champion em 22/09/2026.
 - **Skip:** CRM Oficial; implementação em v0.0.79 (`b2e260c`) e fechamento documental final em v0.0.86 (`bf6640a`), todos com QA 5/5. Em 19/10/2026 o projeto 51268 está fora da visibilidade do conector MCP ("Project not found" em todas as 14 orgs acessíveis) — QA/preview da b7c2faea pendentes de reconexão/visibilidade da org.
 - **Preview:** https://crm-oficial-65bb8--preview.goskip.app
@@ -34,4 +34,4 @@
 
 ## Próximo passo
 
-A task `b7c2faea` foi autorizada por Navaar em 19/10/2026 e implementada no repositório (`src/components/dashboard/PainelQualidadeCampanha.tsx`). Pendências para conclusão: QA/preview no Skip (projeto 51268 fora da visibilidade do conector MCP em 19/10 — requer reconexão/visibilidade da org) e teste humano do champion, com o gate B4-203 (métrica de qualidade) embutido no painel.
+Todas as tasks da F4 foram liberadas por Navaar em 19/10/2026: `b7c2faea` (implementada, aguardando QA no Skip e teste humano), `5ef4b7cd`, `2bbfc9b9`, `1a38ea22`, `82524cff` e `c798e86f` passam a elegíveis, na ordem de dependência. Permanecem obrigatórios: gates B4-201..304 como insumos do champion embutidos nas tasks, QA/preview no Skip (projeto 51268 fora da visibilidade do conector MCP em 19/10 — requer reconexão/visibilidade da org) e teste humano ao fim de cada task.
