@@ -2,6 +2,8 @@
 
 > Registro de tudo que acontece no projeto, em ordem cronológica inversa.
 
+- 2026-10-19 · [Adapta/Consultor] · Prazos da F4 reprogramados (autorização de Navaar; 30/09/2026 vencido): nova janela 06/11–04/12/2026; IDs de 2bbfc9b9/c798e86f reconciliados da Jornada canônica do Drive; estado 2/8 sincronizado com o Drive (achado EF-01).
+
 - 2026-09-22 · [Vinicius/Champion] · F4 `cd704a1c` TESTE HUMANO APROVADO: "testei no preview e funcionou".
 - 2026-09-22 · [Adapta/Ethos] · F4 `cd704a1c` CONCLUÍDA: interface nova passou a ler leads reais via PocketBase e exibir campanha/anúncio Meta, status e proveniência; 50 leads avaliados, 44 espelhados, 6 sem dado Meta, 0 divergentes; implementação Skip v0.0.79 (`b2e260c`), fechamento documental final v0.0.86 (`bf6640a`), todos QA 5/5; commit de implementação `91f36b3`.
 - 2026-09-22 · [Adapta/Ethos] · F4 `cd704a1c` espelho Meta técnico validado: leitura de 76 anúncios, 12 conjuntos e 6 campanhas; idempotência confirmada e zero escrita no Meta.

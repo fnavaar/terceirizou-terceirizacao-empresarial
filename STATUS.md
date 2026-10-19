@@ -7,7 +7,7 @@
 - **Fase 1:** concluída — 10/10 tasks.
 - **Fase 2:** concluída — 5/5 tasks.
 - **Fase 3:** concluída — 7/7 tasks, aceite final do champion em 2026-09-16.
-- **Fase 4:** em andamento — **2/8 tasks concluídas** (`e4c77e80`, `cd704a1c`); prazo 30/09/2026.
+- **Fase 4:** em andamento — **2/8 tasks concluídas** (`e4c77e80`, `cd704a1c`); prazo original 30/09/2026 vencido; reprogramado em 19/10/2026 (autorização de Navaar): nova janela 06/11–04/12/2026.
 - **Task `cd704a1c`:** concluída após QA técnico, verificação no preview e aceite humano do champion em 22/09/2026.
 - **Skip:** CRM Oficial; implementação em v0.0.79 (`b2e260c`) e fechamento documental final em v0.0.86 (`bf6640a`), todos com QA 5/5.
 - **Preview:** https://crm-oficial-65bb8--preview.goskip.app
