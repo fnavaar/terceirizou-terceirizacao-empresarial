@@ -17,4 +17,4 @@
 - [ ] Exibir qualificação e follow-up na tela do lead @Cliente !20/11/2026 [interno] <!-- id:2bbfc9b9-ece5-4899-9c42-e12dca28b629 -->
 - [ ] Monitorar queda de qualidade por origem com baseline @Cliente !04/12/2026 [interno] <!-- id:c798e86f-cd84-4551-a2f7-ad743e9ea7be -->
 
-**Status da fase:** 2/8 concluídas (e4c77e80, cd704a1c — 22/09/2026, com aceite humano do champion). Próxima task elegível: `b7c2faea`, em execução desde 19/10/2026. Prazos reprogramados em 19/10/2026 (autorização de Navaar; prazo original 30/09/2026 vencido): nova janela 06/11–04/12/2026.
+**Status da fase:** 2/8 concluídas (e4c77e80, cd704a1c — 22/09/2026, com aceite humano do champion). Todas as 8 tasks LIBERADAS por Navaar em 19/10/2026 (b7c2faea em execução; demais disponíveis na ordem b7c2faea → 5ef4b7cd → 2bbfc9b9 → 1a38ea22 → 82524cff → c798e86f). Permanecem obrigatórios: gates B4-201..304 como insumos do champion embutidos nas tasks e teste humano ao fim de cada uma. Prazos reprogramados em 19/10/2026 (prazo original 30/09/2026 vencido): nova janela 06/11–04/12/2026.
