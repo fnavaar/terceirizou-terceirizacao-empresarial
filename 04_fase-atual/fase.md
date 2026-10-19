@@ -8,7 +8,7 @@
   > SPEC-4-001 · CA-4-101/102/103/104 · 50 leads avaliados, 44 espelhados, 6 sem dado Meta, 0 divergentes; aceite humano do champion em 22/09/2026.
 - [/] Criar uma tela que compare quantidade e qualidade de leads por campanha @Cliente !06/11/2026 [interno] <!-- id:b7c2faea-89da-40ea-a6cf-969a1cc557a9 -->
   > SPEC-4-002 · CA-4-201 · Exibir campanha/origem, período, leads recebidos, qualificados, agendados e convertidos. Métrica de qualidade exige aprovação do champion.
-  > Implementação entregue em 19/ card
+  > Implementação entregue em 19/10/2026 (PainelQualidadeCampanha.tsx, autorização de Navaar): consulta read-only com fonte/período declarados e vazio ≠ zero (RN-4-204); gate B4-203 embutido no painel. Pendente: QA no Skip (projeto 51268 fora da visibilidade do conector em 19/10) e teste humano do champion.
 - [ ] Criar uma lista de leads antigos que podem receber uma nova abordagem @Cliente !13/11/2026 [interno] <!-- id:5ef4b7cd-7240-4480-a420-c9dcfb2f2944 -->
   > SPEC-4-002 · CA-4-202/203 · Nenhum contato sem aprovação humana do lote.
 - [ ] Configurar uma análise que sugira aprendizados sobre campanhas sem alterar orçamento ou público @Cliente !27/11/2026 [interno] <!-- id:1a38ea22-f8ba-4c9c-a7aa-985c9df0aa0a -->
