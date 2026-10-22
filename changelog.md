@@ -2,6 +2,9 @@
 
 > Registro de tudo que acontece no projeto, em ordem cronológica inversa.
 
+- 2026-10-22 · [Vinicius e Henrique/Champion] · DECISÃO B4-203: CNPJ **não** é critério nem limitador. Lead com CNPJ registra o dado como complemento; lead sem CNPJ segue normalmente na qualificação, no painel e na reativação. Formulários (Meta/site) não passam a exigir CNPJ. "Qualificado" no painel = classificação da Fase 2 (SPEC-2-001), que não usa CNPJ.
+- 2026-10-22 · [Adapta/Consultor] · F4 `b7c2faea`: coluna "Qualificados" do `PainelQualidadeCampanha.tsx` liberada com a métrica aprovada (vazio ≠ zero mantido); SPEC-4-002 e `fase.md` atualizadas (B4-203 fechado; em B4-201 o CNPJ sai do critério, demais itens seguem com o champion). Pendente: aplicar no Skip (projeto 51268 fora da visibilidade do conector), QA e teste humano do champion no preview.
+
 - 2026-10-19 · [Adapta/Consultor] · Todas as tasks da F4 LIBERADAS no repositório (decisão de Navaar): 5ef4b7cd, 2bbfc9b9, 1a38ea22, 82524cff e c798e86f passam a elegíveis além da b7c2faea (já implementada, aguardando QA/teste). Gates B4-201..304 permanecem como insumos do champion embutidos nas tasks; teste humano obrigatório ao fim de cada task; QA no Skip pendente de visibilidade do projeto 51268.
 
 - 2026-10-19 · [Adapta/Consultor] · F4 `b7c2faea` IMPLEMENTADA (autorização de Navaar): `PainelQualidadeCampanha.tsx` — comparação de quantidade (recebidos/agendados/convertidos) e qualidade por campanha, read-only, fonte/período declarados, vazio ≠ zero (RN-4-204); coluna de qualificados exibe pendência B4-203 até aprovação da métrica pelo champion. QA no Skip pendente: projeto 51268 fora da visibilidade do conector ("Project not found" em 19/10). Aguardando teste humano do champion.

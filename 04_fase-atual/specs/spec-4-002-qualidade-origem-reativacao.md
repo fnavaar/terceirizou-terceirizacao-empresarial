@@ -11,7 +11,8 @@
 - **Estado atual:** a Fase 2 classifica leads (estado, score, motivo, próxima ação) e a Fase 3 registra follow-up e paradas, mas o painel atual (`src/pages/Index.tsx`) não exibe os campos de qualificação nem o follow-up; leads perdidos não têm fila de reativação; a qualidade por origem só é respondível exportando dados manualmente.
 - **Estado desejado:** uma tela compara quantidade e qualidade por origem/campanha; uma fila de reativação organiza leads históricos elegíveis com histórico preservado; a tela do lead mostra qualificação e follow-up para a revisão humana trabalhar; nenhuma ação de contato parte do sistema sem aprovação humana.
 - **Decisões fechadas:** Navaar aceitou em 17/09/2026 o painel visual do follow-up como evolução da F4; scheduler da cadência e webhook de bounce foram **rejeitados** nesta onda (registrados como adiados); reativação permanece com aprovação humana obrigatória (escopo: "nenhum contato deve ser enviado antes da aprovação humana").
-- **Bloqueios (B4-201..203):** (B4-201) critério de elegibilidade da reativação (motivos de perda, janela de última interação, exclusões) definido pelo champion antes de qualquer contato; (B4-202) consentimento/base legal por lead checados antes de incluir alguém na fila — leads com descadastro (nao_contatar da F3) ficam permanentemente fora; (B4-203) métrica de comparação (definição de "qualificado", janela, fórmula) aprovada pelo champion antes de a tela comparar.
+- **Decisão do champion (22/10/2026 — Vinicius e Henrique, P2):** CNPJ **não** é critério nem limitador. Um lead com CNPJ registra o dado como complemento; um lead sem CNPJ segue normalmente na qualificação, no painel e na reativação. Nenhum formulário (Meta ou site) passa a exigir CNPJ. Com isso, B4-203 fica fechado: "qualificado" = lead com `estado_qualificacao = qualificado` pela regra da Fase 2 (SPEC-2-001), que não usa CNPJ; janela = período selecionado na tela (30d, 90d ou tudo); fórmula = contagem de qualificados por campanha ao lado dos recebidos, com lead sem classificação exibido como "sem dado".
+- **Bloqueios (B4-201..203):** (B4-201) critério de elegibilidade da reativação (motivos de perda, janela de última interação, exclusões) definido pelo champion antes de qualquer contato; (B4-202) consentimento/base legal por lead checados antes de incluir alguém na fila — leads com descadastro (nao_contatar da F3) ficam permanentemente fora; (B4-203) métrica de comparação (definição de "qualificado", janela, fórmula) aprovada pelo champion antes de a tela comparar — **fechado em 22/10/2026** (ver decisão acima). Em B4-201, CNPJ fica fora do critério de elegibilidade; motivos de perda, janela de última interação e exclusões continuam a definir com o champion.
 
 ## Resultado observável
 
@@ -69,7 +70,7 @@ O responsável comercial abre uma tela que compara origens/campanhas por leads r
 
 - [ ] critério de reativação aprovado pelo champion (B4-201)
 - [ ] consentimento/descadastro tratados como exclusão permanente (B4-202)
-- [ ] métrica de qualidade aprovada (B4-203)
+- [x] métrica de qualidade aprovada (B4-203) — 22/10/2026, sem exigência de CNPJ
 - [ ] prova negativa de RLS nas novas telas
 - [ ] lote aprovado não gerou contato automático
 
@@ -140,7 +141,7 @@ Ciclo controlado: baseline (leads históricos conhecidos), montagem da fila, apr
 - **Como demonstrar:** abrir a tela de qualidade, montar a fila, aprovar um lote e mostrar a tela do lead com qualificação + follow-up.
 - **Como operar:** responsável comercial valida qualidade e aprova lotes; marketing consulta; champion revisa critério.
 - **Como monitorar:** lotes aguardando aprovação, acessos negados, origens sem dado.
-- **Pendência conhecida:** critério de reativação e métrica dependem do champion (B4-201/203); painel do follow-up consome eventos da SPEC-3-002 já em produção.
+- **Pendência conhecida:** métrica de qualidade fechada em 22/10/2026 (B4-203, sem CNPJ); critério de reativação (B4-201) ainda depende do champion quanto a motivos de perda, janela e exclusões — CNPJ não entra; painel do follow-up consome eventos da SPEC-3-002 já em produção.
 
 ## Tasks vinculadas
 

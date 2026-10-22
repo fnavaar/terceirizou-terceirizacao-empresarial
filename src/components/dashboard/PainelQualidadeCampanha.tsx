@@ -1,8 +1,8 @@
 /* CRM Oficial — Painel de qualidade por campanha (SPEC-4-002 · CA-4-201 · task b7c2faea)
  * Consulta read-only sobre a collection `leads`: compara quantidade e qualidade por campanha.
  * Regras da SPEC: vazio ≠ zero (RN-4-204); fonte e período declarados; nenhum contato; nenhuma alteração de regra.
- * Gate B4-203 embutido: enquanto o champion não aprovar a métrica de qualidade, a coluna "Qualificados"
- * exibe pendência explícita em vez de número — a comparação de quantidade funciona normalmente. */
+ * Gate B4-203 fechado em 22/10/2026 pelo champion: "qualificado" = estado_qualificacao da Fase 2 (SPEC-2-001);
+ * CNPJ NÃO é critério nem limitador. Lead sem classificação continua "sem dado" — nunca zero. */
 import React, { useEffect, useMemo, useState } from 'react'
 import { BarChart3, CircleAlert, RefreshCw } from 'lucide-react'
 import pb from '@/lib/pocketbase/client'
@@ -86,7 +86,7 @@ export const PainelQualidadeCampanha: React.FC = () => {
     return Array.from(mapa.values()).sort((a, b) => b.recebidos - a.recebidos)
   }, [leads, periodo])
 
-  const metricaAprovada = false // B4-203: pendente de aprovação do champion — não inferir métrica
+  const metricaAprovada = true // B4-203 aprovado em 22/10/2026: classificação da Fase 2, sem exigir CNPJ
   const fonte = 'CRM (collection leads) + espelho Meta (SPEC-4-001)'
   const periodoTexto =
     periodo === 'tudo' ? 'Todos os períodos' : `Últimos ${periodo} dias`
@@ -173,7 +173,7 @@ export const PainelQualidadeCampanha: React.FC = () => {
       </div>
 
       <div className="p-4 border-t border-slate-200/80 text-[11px] text-slate-500">
-        Sem métrica de qualidade aprovada pelo champion (B4-203), a coluna de qualificados exibe pendência em vez de número — vazio nunca vira zero (RN-4-204).
+        Qualificados = leads classificados como qualificados pela regra da Fase 2 (B4-203, aprovada em 22/10/2026); CNPJ não é exigido. Campanha sem classificação exibe "—" — vazio nunca vira zero (RN-4-204).
         Nenhum contato parte desta tela; consulta read-only.
       </div>
     </section>

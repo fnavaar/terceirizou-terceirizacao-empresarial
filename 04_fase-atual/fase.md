@@ -9,8 +9,10 @@
 - [/] Criar uma tela que compare quantidade e qualidade de leads por campanha @Cliente !06/11/2026 [interno] <!-- id:b7c2faea-89da-40ea-a6cf-969a1cc557a9 -->
   > SPEC-4-002 · CA-4-201 · Exibir campanha/origem, período, leads recebidos, qualificados, agendados e convertidos. Métrica de qualidade exige aprovação do champion.
   > Implementação entregue em 19/10/2026 (PainelQualidadeCampanha.tsx, autorização de Navaar): consulta read-only com fonte/período declarados e vazio ≠ zero (RN-4-204); gate B4-203 embutido no painel. Pendente: QA no Skip (projeto 51268 fora da visibilidade do conector em 19/10) e teste humano do champion.
+  > 22/10/2026: B4-203 fechado pelo champion (Vinicius e Henrique) — CNPJ não é limitador; "qualificado" = classificação da Fase 2. Coluna de qualificados liberada no painel.
 - [ ] Criar uma lista de leads antigos que podem receber uma nova abordagem @Cliente !13/11/2026 [interno] <!-- id:5ef4b7cd-7240-4480-a420-c9dcfb2f2944 -->
   > SPEC-4-002 · CA-4-202/203 · Nenhum contato sem aprovação humana do lote.
+  > 22/10/2026: CNPJ não é critério de elegibilidade (decisão do champion); motivos de perda, janela e exclusões do B4-201 seguem a definir.
 - [ ] Configurar uma análise que sugira aprendizados sobre campanhas sem alterar orçamento ou público @Cliente !27/11/2026 [interno] <!-- id:1a38ea22-f8ba-4c9c-a7aa-985c9df0aa0a -->
   > SPEC-4-003 · CA-4-301/302/305 · Loop somente recomendando, sem escrever no Meta.
 - [ ] Revisar dez recomendações de campanha e registrar quais serão usadas @"Felipe Navaar" !30/11/2026 #aculturamento [interno] <!-- id:82524cff-7200-4428-a3cb-ede0586a79f4 -->
